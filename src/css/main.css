@@ -1,0 +1,29 @@
+:root {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-synthesis: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main {
+  background: url("/assets/splash-background.png") 0 0 / cover;
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex-shrink: 0;
+}
+
+img {
+  filter: grayscale(1);
+}
+
+img:hover {
+  filter: grayscale(0);
+}

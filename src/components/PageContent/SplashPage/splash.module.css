@@ -1,0 +1,32 @@
+.splashPage {
+  padding: 20px;
+}
+
+.customList li {
+  list-style: none;
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+}
+
+.customList li:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.customList li p {
+  display: flex;
+  align-items: center;
+  word-break: break-all;
+}
+
+.experience li {
+  margin: 6px 0;
+}
+
+.experience li a {
+  text-decoration: underline;
+}
+
+.experience li a:hover {
+  background-color: #edf2f7;
+}

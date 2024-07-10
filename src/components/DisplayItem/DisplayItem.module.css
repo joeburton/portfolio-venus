@@ -1,0 +1,25 @@
+.cardBody p,
+.cardBody a {
+  padding: 8px 0 8px 0;
+  color: #393934;
+}
+
+.cardBody a.link {
+  display: flex;
+  border-top: dashed 1px #ccc;
+  padding: 8px 0 8px 0;
+  color: #393934;
+}
+
+.cardBody a.link:last-child {
+  padding: 8px 0 0 0;
+}
+
+.contentItem {
+  border-top: dashed 1px #ccc;
+}
+
+.description {
+  overflow: hidden;
+  display: block;
+}
