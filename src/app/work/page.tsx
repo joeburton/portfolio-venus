@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 import styles from "./work.module.css";
 
 async function getData() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/projects`);
+  const res = await fetch(`${process.env.BASE_URL}/api/projects`);
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }

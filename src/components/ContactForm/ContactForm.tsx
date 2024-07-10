@@ -113,7 +113,7 @@ export const ContactForm = () => {
         await new Promise((r) => setTimeout(r, 2000));
 
         const data = await axios.post(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/mailsender`,
+          `${process.env.BASE_URL}/api/mailsender`,
           formData,
           {
             headers: {
