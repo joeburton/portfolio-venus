@@ -23,8 +23,6 @@ async function getData() {
 
 export default async function Work() {
   const projects: DisplayItemInterface[] = await getData();
-  console.log(process.env.BASE_URL);
-  // const projects = "";
   return (
     <>
       <PageIntro

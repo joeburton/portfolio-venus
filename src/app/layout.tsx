@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: "Joe Burton - Portfolio",
   description:
     "Joe Burton is a Software Engineer specialised in creating beautifully crafted websites.",
+  icons: {
+    icon: "/assets/profile-images/me-masked.jpg",
+  },
 };
 
 export default function RootLayout({
