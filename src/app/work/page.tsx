@@ -13,16 +13,17 @@ export const metadata: Metadata = {
 
 import styles from "./work.module.css";
 
-// async function getData() {
-//   const res = await fetch(`${process.env.BASE_URL}/api/projects`);
-//   if (!res.ok) {
-//     throw new Error("Failed to fetch data");
-//   }
-//   return res.json();
-// }
+async function getData() {
+  const res = await fetch(`${process.env.BASE_URL}/api/projects`);
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return res.json();
+}
 
 export default async function Work() {
   // const projects: DisplayItemInterface[] = await getData();
+  console.log(process.env.BASE_URL);
   const projects = "";
   return (
     <>

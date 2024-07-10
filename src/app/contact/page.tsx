@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Contact() {
+  console.log(process.env.SENDGRID_API_KEY);
   return (
     <>
       <PageIntro

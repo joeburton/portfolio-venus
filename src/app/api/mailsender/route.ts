@@ -9,6 +9,8 @@ if (!SENDGRID_API_KEY) {
 
 sendgrid.setApiKey(SENDGRID_API_KEY);
 
+console.log(SENDGRID_API_KEY);
+
 export async function POST(req: NextRequest) {
   try {
     const { name, email, phoneNumber, message } = await req.json();
