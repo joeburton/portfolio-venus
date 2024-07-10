@@ -112,16 +112,12 @@ export const ContactForm = () => {
         // delay
         await new Promise((r) => setTimeout(r, 2000));
 
-        const data = await axios.post(
-          `${process.env.BASE_URL}/api/mailsender`,
-          formData,
-          {
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const data = await axios.post(`/api/mailsender`, formData, {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        });
 
         // success
         if (data) {
