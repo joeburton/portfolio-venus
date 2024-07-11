@@ -26,6 +26,7 @@ export const Projects: React.FC<{ projects: DisplayItemInterface[] }> = ({
     const rowEnd = (i + 1) % numberColumns === 0 ? true : false; // every third item.
     return (
       <DisplayItem
+        breakpointWidths={{ base: "100%", lg: "50%", xl: "33.3%" }}
         logo={project.logo}
         logoSize={project.logoSize as LogoSize}
         role={project.role}

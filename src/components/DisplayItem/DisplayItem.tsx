@@ -29,7 +29,9 @@ const logoPixelWidth: { [K in LogoSize]: string } = {
 };
 
 export type DisplayItemInterface = {
+  id?: string;
   rowEnd?: boolean;
+  breakpointWidths: { base?: string; lg?: string; xl?: string };
   logo: string;
   logoSize: LogoSize;
   role: string;
@@ -56,6 +58,7 @@ const Skills = ({ skills }: SkillsInterface) => (
 
 export const DisplayItem = ({
   rowEnd = false,
+  breakpointWidths,
   logo,
   logoSize,
   role,
@@ -72,7 +75,7 @@ export const DisplayItem = ({
   const skillSet: string[] = skills.split(",");
 
   return (
-    <Box width={{ base: "100%", lg: "50%", xl: "33.3%" }}>
+    <Box width={breakpointWidths}>
       <Card
         variant='elevated'
         mr={rowEnd ? 0 : [0, 0, 0, 5]}
