@@ -8,12 +8,8 @@ import {
   CardBody,
   Link as ChakraLink,
   Divider,
-  Flex,
   Icon,
-  List,
-  ListIcon,
   ListItem,
-  Show,
   SimpleGrid,
   Text,
   UnorderedList,
@@ -21,7 +17,7 @@ import {
 
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { HiMiniAtSymbol, HiMiniDevicePhoneMobile } from "react-icons/hi2";
-import { GitHubMark, LinkedIn, Vercel } from "../../CustomIcons";
+import { GitHubMark, LinkedIn } from "../../CustomIcons";
 import styles from "./splash.module.css";
 
 export const SplashContent = () => {
@@ -105,7 +101,7 @@ export const SplashContent = () => {
               <ul className={styles.customList}>
                 <li>
                   <Card variant='filled' p='1'>
-                    <ChakraLink href='https://github.com/joeburton' isExternal>
+                    <Link href='https://github.com/joeburton' isExternal>
                       <Text>
                         <Icon
                           as={GitHubMark}
@@ -115,25 +111,12 @@ export const SplashContent = () => {
                         />
                         github.com/joeburton
                       </Text>
-                    </ChakraLink>
+                    </Link>
                   </Card>
                 </li>
                 <li>
                   <Card variant='filled' p='1'>
-                    <ChakraLink
-                      href='https://vercel.com/joe-burtons-projects'
-                      isExternal
-                    >
-                      <Text>
-                        <Icon as={Vercel} width='20px' height='20px' mr='4px' />
-                        vercel.com/joe-burtons-projects
-                      </Text>
-                    </ChakraLink>
-                  </Card>
-                </li>
-                <li>
-                  <Card variant='filled' p='1'>
-                    <ChakraLink
+                    <Link
                       href='https://www.linkedin.com/in/joejamesburton'
                       isExternal
                     >
@@ -146,59 +129,82 @@ export const SplashContent = () => {
                         />
                         linkedin.com/in/joejamesburton
                       </Text>
-                    </ChakraLink>
+                    </Link>
+                  </Card>
+                </li>
+                <li>
+                  <Card variant='filled' p='1'>
+                    <Link href='/work'>
+                      <Text>
+                        <Icon
+                          as={ArrowForwardIcon}
+                          width='20px'
+                          height='20px'
+                          mr='4px'
+                        />
+                        View my work
+                      </Text>
+                    </Link>
                   </Card>
                 </li>
               </ul>
-              <SimpleGrid columns={1}>
-                <Show below='md'>
-                  <Divider
-                    orientation='horizontal'
-                    m='10px 0 15px 0'
-                    color='silver'
-                    sx={{
-                      "@media screen and (min-width: 768px)": {
-                        display: "none",
-                      },
-                    }}
-                  />
-                </Show>
-                <List spacing={3} mb='10px'>
-                  <ListItem>
-                    <ListIcon as={HiMiniAtSymbol} />
-                    <Link href='mailto:joeburton@gmail.com'>
-                      joeburton@gmail.com
+              <Divider
+                orientation='horizontal'
+                m='2px 0 2px 0'
+                color='silver'
+                sx={{
+                  "@media screen and (min-width: 768px)": {
+                    display: "none",
+                  },
+                }}
+              />
+              <ul className={styles.customList}>
+                <li>
+                  <Card variant='filled' p='1'>
+                    <Link href='mailto:joeburton@gmail.com' isExternal>
+                      <Text>
+                        <Icon
+                          as={HiMiniAtSymbol}
+                          width='20px'
+                          height='20px'
+                          mr='4px'
+                        />
+                        joeburton@gmail.com
+                      </Text>
                     </Link>
-                  </ListItem>
-                  <ListItem>
-                    <ListIcon as={HiMiniDevicePhoneMobile} />
-                    <Link href='tel:+447768989321'>+ 44 (0) 7768989321</Link>
-                  </ListItem>
-                </List>
-                <Flex alignItems='flex-end' mt='20px'>
-                  <ChakraLink
-                    colorScheme='teal'
-                    variant='outline'
-                    mr='10px'
-                    alignItems='center'
-                    display='inline-flex'
-                    href='/work'
-                  >
-                    View my work
-                    <Icon as={ArrowForwardIcon} m='0 0 0 4px' />
-                  </ChakraLink>
-                  <ChakraLink
-                    colorScheme='teal'
-                    variant='outline'
-                    alignItems='center'
-                    display='inline-flex'
-                    href='/contact'
-                  >
-                    Contact me
-                    <Icon as={ArrowForwardIcon} m='0 0 0 4px' />
-                  </ChakraLink>
-                </Flex>
-              </SimpleGrid>
+                  </Card>
+                </li>
+                <li>
+                  <Card variant='filled' p='1'>
+                    <Link href='tel:+447768989321' isExternal>
+                      <Text>
+                        <Icon
+                          as={HiMiniDevicePhoneMobile}
+                          width='20px'
+                          height='20px'
+                          mr='4px'
+                        />
+                        + 44 (0) 7768989321
+                      </Text>
+                    </Link>
+                  </Card>
+                </li>
+                <li>
+                  <Card variant='filled' p='1'>
+                    <Link href='/contact'>
+                      <Text>
+                        <Icon
+                          as={ArrowForwardIcon}
+                          width='20px'
+                          height='20px'
+                          mr='4px'
+                        />
+                        Contact me
+                      </Text>
+                    </Link>
+                  </Card>
+                </li>
+              </ul>
             </SimpleGrid>
           </CardBody>
         </Card>
