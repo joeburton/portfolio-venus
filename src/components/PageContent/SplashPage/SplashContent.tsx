@@ -28,15 +28,13 @@ export const SplashContent = () => {
           <CardBody>
             <UnorderedList className={styles.experience}>
               <ListItem>
-                With over 20 years of industry experience working as a Web
-                Developer.
+                Over 20 years of industry experience working as a Web Developer.
               </ListItem>
               <ListItem>
-                For the past 15+ years I&apos;ve specialised in front-end
-                development.
+                More than 15 years specialising in front-end development.
               </ListItem>
               <ListItem>
-                I&apos;ve worked for a broad range of companies, such as:
+                With a broad range of experience working for companies such as:
                 <UnorderedList styleType="'- '">
                   <ListItem>
                     <ChakraLink
