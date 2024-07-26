@@ -14,11 +14,16 @@ export const metadata: Metadata = {
 import styles from "./work.module.css";
 
 async function getData() {
-  const res = await fetch(`${process.env.BASE_URL}/api/projects`);
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
+  try {
+    const res = await fetch(`${process.env.BASE_URL}/api/projects`);
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    return res.json();
+  } catch (error: unknown) {
+    error instanceof Error && console.error(error.message);
+    throw error;
   }
-  return res.json();
 }
 
 export default async function Work() {
