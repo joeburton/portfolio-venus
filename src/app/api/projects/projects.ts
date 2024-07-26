@@ -193,7 +193,7 @@ export const projects = [
   {
     id: "34725",
     logo: "jam-engine-group.png",
-    logoSize: "medium",
+    logoSize: "small",
     role: "Senior UI Developer",
     company: "Jam - The Engine Group",
     description:

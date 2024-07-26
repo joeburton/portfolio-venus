@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import parse from "html-react-parser";
-import { Card, CardBody, Text, Link, Box, Tag } from "@chakra-ui/react";
+import { Card, CardBody, Text, Link, Box, Tag, Image } from "@chakra-ui/react";
 import {
   ExternalLinkIcon,
   ChevronDownIcon,
@@ -12,8 +12,6 @@ import {
 import { generateUniqueId } from "../../utils";
 
 import styles from "./DisplayItem.module.css";
-
-import Image from "next/image";
 
 interface Links {
   visual: string;
