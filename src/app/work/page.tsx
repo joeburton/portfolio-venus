@@ -21,8 +21,13 @@ async function getData() {
     }
     return res.json();
   } catch (error: unknown) {
-    error instanceof Error && console.error(error.message);
-    throw error;
+    if (error instanceof Error) {
+      console.error(error.message);
+      throw error;
+    } else {
+      console.error("Unexpected error");
+      throw new Error("Unexpected error occurred");
+    }
   }
 }
 
