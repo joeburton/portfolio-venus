@@ -30,14 +30,3 @@
 .experience li a:hover {
   background-color: #edf2f7;
 }
-
-.mydialog {
-  position: absolute; /* or 'fixed' depending on your specific needs */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin: 0;
-  background-color: black;
-  color: #edf2f7;
-  border-radius: 4px;
-}

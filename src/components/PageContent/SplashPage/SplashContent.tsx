@@ -19,14 +19,8 @@ import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { HiMiniAtSymbol, HiMiniDevicePhoneMobile } from "react-icons/hi2";
 import { GitHubMark, LinkedIn } from "../../CustomIcons";
 import styles from "./splash.module.css";
-import { useState } from "react";
 
 export const SplashContent = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleDialog = () => {
-    setIsOpen(!isOpen);
-  };
   return (
     <div className={styles.splashPage}>
       <Box maxWidth={"768px"} m='0 auto'>
@@ -208,19 +202,11 @@ export const SplashContent = () => {
                     </Link>
                   </Card>
                 </li>
-                {/* <li>
-                  <button onClick={toggleDialog}>
-                    {isOpen ? "Hide Dialog" : "Show Dialog"}
-                  </button>
-                </li> */}
               </ul>
             </SimpleGrid>
           </CardBody>
         </Card>
       </Box>
-      {/* <dialog className={styles.mydialog} open={isOpen} id='mydialog'>
-        some meaningful message
-      </dialog> */}
     </div>
   );
 };
