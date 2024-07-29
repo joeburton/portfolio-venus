@@ -27,13 +27,6 @@ interface FormData {
   message: string;
 }
 
-interface FormErrors {
-  name: string;
-  email: string;
-  phoneNumber: string;
-  message: string;
-}
-
 export const ContactForm = () => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -42,7 +35,7 @@ export const ContactForm = () => {
     message: "",
   });
 
-  const [errors, setErrors] = useState<FormErrors>({
+  const [errors, setErrors] = useState<FormData>({
     name: "",
     email: "",
     phoneNumber: "",
@@ -178,6 +171,7 @@ export const ContactForm = () => {
         </FormLabel>
         <Input
           type='email'
+          data-testid='email-address'
           name='email'
           value={formData.email}
           onChange={handleChange}

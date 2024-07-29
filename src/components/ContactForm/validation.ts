@@ -14,7 +14,7 @@ export function validateEmail(value: string) {
   if (!value) {
     error = "Email is required";
   } else if (!reg.test(value)) {
-    error = "Invalid email address";
+    error = "Please provide a valid email address";
   }
   return error;
 }

@@ -47,7 +47,12 @@ interface SkillsInterface {
 const Skills = ({ skills }: SkillsInterface) => (
   <>
     {skills.map((skill: string) => (
-      <Tag key={generateUniqueId()} colorScheme='green' m={"2px 2px 2px 0"}>
+      <Tag
+        key={generateUniqueId()}
+        role='listitem'
+        colorScheme='green'
+        m={"2px 2px 2px 0"}
+      >
         {skill}
       </Tag>
     ))}
@@ -103,7 +108,12 @@ export const DisplayItem = ({
           <Text fontSize='sm' className={styles.contentItem}>
             Role: {role}
           </Text>
-          <Text fontSize='sm' className={styles.contentItem}>
+          <Text
+            role='list'
+            aria-label='Skills'
+            fontSize='sm'
+            className={styles.contentItem}
+          >
             <Skills skills={skillSet} />
           </Text>
           <Text
