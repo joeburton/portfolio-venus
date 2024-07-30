@@ -151,7 +151,7 @@ export const ContactForm = () => {
   return (
     <Box as='form' onSubmit={handleSubmit}>
       <FormControl id='name' mb={8} isInvalid={errors.name ? true : false}>
-        <FormLabel mb={1} htmlFor='message' fontWeight='normal' color='#393934'>
+        <FormLabel mb={1} htmlFor='name' fontWeight='normal' color='#393934'>
           Name
         </FormLabel>
         <Input
@@ -165,13 +165,13 @@ export const ContactForm = () => {
           {errors.name}
         </FormErrorMessage>
       </FormControl>
+
       <FormControl id='email' mb={8} isInvalid={errors.email ? true : false}>
-        <FormLabel mb={1} htmlFor='message' fontWeight='normal' color='#393934'>
+        <FormLabel mb={1} fontWeight='normal' color='#393934'>
           Email
         </FormLabel>
         <Input
           type='email'
-          data-testid='email-address'
           name='email'
           value={formData.email}
           onChange={handleChange}
@@ -181,12 +181,13 @@ export const ContactForm = () => {
           {errors.email}
         </FormErrorMessage>
       </FormControl>
+
       <FormControl
         id='phoneNumber'
         mb={8}
         isInvalid={errors.phoneNumber ? true : false}
       >
-        <FormLabel mb={1} htmlFor='message' fontWeight='normal' color='#393934'>
+        <FormLabel mb={1} fontWeight='normal' color='#393934'>
           Phone Number
         </FormLabel>
         <Input
@@ -200,12 +201,13 @@ export const ContactForm = () => {
           {errors.phoneNumber}
         </FormErrorMessage>
       </FormControl>
+
       <FormControl
         id='message'
         mb={4}
         isInvalid={errors.message ? true : false}
       >
-        <FormLabel mb={1} htmlFor='message' fontWeight='normal' color='#393934'>
+        <FormLabel mb={1} fontWeight='normal' color='#393934'>
           Message
         </FormLabel>
         <Textarea
@@ -219,6 +221,7 @@ export const ContactForm = () => {
           {errors.message}
         </FormErrorMessage>
       </FormControl>
+
       <Button
         m='1rem 1rem 0 0'
         colorScheme='teal'

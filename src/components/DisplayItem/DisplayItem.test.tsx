@@ -32,7 +32,7 @@ describe("DisplayItem", () => {
     expect(screen.getByText(/Front-end Lead\/ Manager/)).toBeInTheDocument();
   });
 
-  it("should expand the text area when the Expand > link is clicked", async () => {
+  it("should toggle/ expand the text content area when the Expand/ Collapse link is clicked ", async () => {
     const project = projects[1];
 
     render(
@@ -57,13 +57,17 @@ describe("DisplayItem", () => {
 
     expect(description).toHaveStyle({ height: "70px" });
 
-    userEvent.click(toggleText);
+    await userEvent.click(toggleText);
 
     await waitFor(() => {
       expect(description).toHaveStyle({ height: "100%" });
     });
 
     expect(toggleText).toHaveTextContent("Collapse");
+
+    await userEvent.click(toggleText);
+
+    expect(toggleText).toHaveTextContent("Expand");
   });
 
   it("should render the correct number of skills", () => {
