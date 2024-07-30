@@ -10,6 +10,9 @@ import { Home } from "../CustomIcons";
 export const Navigation = () => {
   const openLogin = () => {
     console.log("open login ");
+    if (true) {
+      throw new Error("plarp");
+    }
   };
 
   return (
