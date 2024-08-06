@@ -1,0 +1,48 @@
+.carousel {
+  margin: 0 auto;
+  overflow: hidden;
+  width: 100px;
+  display: flex;
+}
+
+.carousel ul {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  list-style: none;
+  transition: 0.3s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out;
+
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+
+.carousel li {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+}
+
+.carousel ul li:nth-child(odd) {
+  background-color: rgb(238, 194, 194);
+}
+
+.carousel ul li:nth-child(even) {
+  background-color: rgb(149, 125, 125);
+}
+
+.carouselNavigation {
+  max-width: 200px;
+  margin: 0 auto;
+  text-align: center;
+  cursor: pointer;
+}
+
+.carouselNavigation span {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.divide {
+  padding: 10px;
+}
