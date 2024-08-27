@@ -28,7 +28,8 @@ export const SplashContent = () => {
           <CardBody>
             <UnorderedList className={styles.experience}>
               <ListItem>
-                Over 20 years of industry experience working as a Web Developer.
+                I have over 20 years of industry experience working as a Web
+                Developer.
               </ListItem>
               <ListItem>
                 More than 15 years specialising in front-end development.
