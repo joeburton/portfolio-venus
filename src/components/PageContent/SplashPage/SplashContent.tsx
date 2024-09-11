@@ -23,13 +23,12 @@ import styles from "./splash.module.css";
 export const SplashContent = () => {
   return (
     <div className={styles.splashPage}>
-      <Box maxWidth={"768px"} m='0 auto'>
-        <Card variant='elevated'>
+      <Box maxWidth={"768px"} m="0 auto">
+        <Card variant="elevated">
           <CardBody>
             <UnorderedList className={styles.experience}>
               <ListItem>
-                I have over 20 years of industry experience working as a Web
-                Developer.
+                Over 20 years of industry experience working as a Web Developer.
               </ListItem>
               <ListItem>
                 More than 15 years specialising in front-end development.
@@ -39,41 +38,41 @@ export const SplashContent = () => {
                 <UnorderedList styleType="'- '">
                   <ListItem>
                     <ChakraLink
-                      href='https://www.ogilvy.com/uk/about'
+                      href="https://www.ogilvy.com/uk/about"
                       isExternal
-                      textDecoration='underline'
+                      textDecoration="underline"
                     >
                       Ogilvy & Mather
                     </ChakraLink>
                     ,{" "}
                     <ChakraLink
-                      href='https://www.tribalworldwide.co.uk/'
+                      href="https://www.tribalworldwide.co.uk/"
                       isExternal
-                      textDecoration='underline'
+                      textDecoration="underline"
                     >
                       Tribal Worldwide
                     </ChakraLink>
                     ,{" "}
                     <ChakraLink
-                      href='https://www.lastminute.com/'
+                      href="https://www.lastminute.com/"
                       isExternal
-                      textDecoration='underline'
+                      textDecoration="underline"
                     >
                       lastminute.com
                     </ChakraLink>
                     ,{" "}
                     <ChakraLink
-                      href='https://www.ge.com/'
+                      href="https://www.ge.com/"
                       isExternal
-                      textDecoration='underline'
+                      textDecoration="underline"
                     >
                       General Electric
                     </ChakraLink>{" "}
                     &{" "}
                     <ChakraLink
-                      href='https://www.worldfirst.com'
+                      href="https://www.worldfirst.com"
                       isExternal
-                      textDecoration='underline'
+                      textDecoration="underline"
                     >
                       World First
                     </ChakraLink>
@@ -83,9 +82,9 @@ export const SplashContent = () => {
               <ListItem>
                 Currently I work for{" "}
                 <ChakraLink
-                  href='https://www.publicissapient.com/'
+                  href="https://www.publicissapient.com/"
                   isExternal
-                  textDecoration='underline'
+                  textDecoration="underline"
                 >
                   Publicis Sapient
                 </ChakraLink>{" "}
@@ -94,19 +93,19 @@ export const SplashContent = () => {
             </UnorderedList>
           </CardBody>
         </Card>
-        <Card variant='elevated' mt='20px'>
+        <Card variant="elevated" mt="20px">
           <CardBody>
             <SimpleGrid columns={[1, 1, 2, 2]} spacing={5}>
               <ul className={styles.customList}>
                 <li>
-                  <Card variant='filled' p='1'>
-                    <Link href='https://github.com/joeburton' isExternal>
+                  <Card variant="filled" p="1">
+                    <Link href="https://github.com/joeburton" isExternal>
                       <Text>
                         <Icon
                           as={GitHubMark}
-                          width='20px'
-                          height='20px'
-                          mr='4px'
+                          width="20px"
+                          height="20px"
+                          mr="4px"
                         />
                         github.com/joeburton
                       </Text>
@@ -114,17 +113,17 @@ export const SplashContent = () => {
                   </Card>
                 </li>
                 <li>
-                  <Card variant='filled' p='1'>
+                  <Card variant="filled" p="1">
                     <Link
-                      href='https://www.linkedin.com/in/joejamesburton'
+                      href="https://www.linkedin.com/in/joejamesburton"
                       isExternal
                     >
                       <Text>
                         <Icon
                           as={LinkedIn}
-                          width='20px'
-                          height='20px'
-                          mr='4px'
+                          width="20px"
+                          height="20px"
+                          mr="4px"
                         />
                         linkedin.com/in/joejamesburton
                       </Text>
@@ -132,14 +131,14 @@ export const SplashContent = () => {
                   </Card>
                 </li>
                 <li>
-                  <Card variant='filled' p='1'>
-                    <Link href='/work'>
+                  <Card variant="filled" p="1">
+                    <Link href="/work">
                       <Text>
                         <Icon
                           as={ArrowForwardIcon}
-                          width='20px'
-                          height='20px'
-                          mr='4px'
+                          width="20px"
+                          height="20px"
+                          mr="4px"
                         />
                         View my work
                       </Text>
@@ -148,9 +147,9 @@ export const SplashContent = () => {
                 </li>
               </ul>
               <Divider
-                orientation='horizontal'
-                m='2px 0 2px 0'
-                color='silver'
+                orientation="horizontal"
+                m="2px 0 2px 0"
+                color="silver"
                 sx={{
                   "@media screen and (min-width: 768px)": {
                     display: "none",
@@ -159,14 +158,14 @@ export const SplashContent = () => {
               />
               <ul className={styles.customList}>
                 <li>
-                  <Card variant='filled' p='1'>
-                    <Link href='mailto:joeburton@gmail.com' isExternal>
+                  <Card variant="filled" p="1">
+                    <Link href="mailto:joeburton@gmail.com" isExternal>
                       <Text>
                         <Icon
                           as={HiMiniAtSymbol}
-                          width='20px'
-                          height='20px'
-                          mr='4px'
+                          width="20px"
+                          height="20px"
+                          mr="4px"
                         />
                         joeburton@gmail.com
                       </Text>
@@ -174,14 +173,14 @@ export const SplashContent = () => {
                   </Card>
                 </li>
                 <li>
-                  <Card variant='filled' p='1'>
-                    <Link href='tel:+447768989321' isExternal>
+                  <Card variant="filled" p="1">
+                    <Link href="tel:+447768989321" isExternal>
                       <Text>
                         <Icon
                           as={HiMiniDevicePhoneMobile}
-                          width='20px'
-                          height='20px'
-                          mr='4px'
+                          width="20px"
+                          height="20px"
+                          mr="4px"
                         />
                         + 44 (0) 7768989321
                       </Text>
@@ -189,14 +188,14 @@ export const SplashContent = () => {
                   </Card>
                 </li>
                 <li>
-                  <Card variant='filled' p='1'>
-                    <Link href='/contact'>
+                  <Card variant="filled" p="1">
+                    <Link href="/contact">
                       <Text>
                         <Icon
                           as={ArrowForwardIcon}
-                          width='20px'
-                          height='20px'
-                          mr='4px'
+                          width="20px"
+                          height="20px"
+                          mr="4px"
                         />
                         Contact me
                       </Text>
