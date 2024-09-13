@@ -38,14 +38,6 @@ export const SplashContent = () => {
                 <UnorderedList styleType="'- '">
                   <ListItem>
                     <ChakraLink
-                      href="https://www.ogilvy.com/uk/about"
-                      isExternal
-                      textDecoration="underline"
-                    >
-                      Ogilvy & Mather
-                    </ChakraLink>
-                    ,{" "}
-                    <ChakraLink
                       href="https://www.tribalworldwide.co.uk/"
                       isExternal
                       textDecoration="underline"
@@ -54,19 +46,27 @@ export const SplashContent = () => {
                     </ChakraLink>
                     ,{" "}
                     <ChakraLink
-                      href="https://www.lastminute.com/"
-                      isExternal
-                      textDecoration="underline"
-                    >
-                      lastminute.com
-                    </ChakraLink>
-                    ,{" "}
-                    <ChakraLink
                       href="https://www.ge.com/"
                       isExternal
                       textDecoration="underline"
                     >
                       General Electric
+                    </ChakraLink>
+                    ,{" "}
+                    <ChakraLink
+                      href="https://www.ogilvy.com/uk/about"
+                      isExternal
+                      textDecoration="underline"
+                    >
+                      Ogilvy & Mather
+                    </ChakraLink>
+                    ,{" "}
+                    <ChakraLink
+                      href="https://www.lastminute.com/"
+                      isExternal
+                      textDecoration="underline"
+                    >
+                      lastminute.com
                     </ChakraLink>{" "}
                     &{" "}
                     <ChakraLink
