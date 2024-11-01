@@ -13,13 +13,14 @@ import {
 import styles from './FilterProjects.module.css';
 
 import { DisplayItemInterface } from '@/components/DisplayItem';
-import { useDetectOutsideClick } from '../../hooks';
+import { useDetectOutsideClick, useToggleOnKeys } from '../../hooks';
 
 interface FilterProjectsProps {
   projects: DisplayItemInterface[];
 }
 
 export const FilterProjects = ({ projects }: FilterProjectsProps) => {
+  const [isActive, toggleIsActive] = useToggleOnKeys(['x', 'y']);
   const [filter, setFilter] = useState('');
   const [filteredProjects, setFilteredProjects] = useState<
     DisplayItemInterface[]
@@ -52,29 +53,35 @@ export const FilterProjects = ({ projects }: FilterProjectsProps) => {
     <Container maxWidth={'1200px'} margin="0" p={0}>
       <Box>
         <Card>
-          <CardBody className={styles.cardBody}>
-            <Input
-              name="filter-projects"
-              placeholder="Filter projects"
-              type="text"
-              value={filter}
-              onChange={filterProjects}
-            />
-            {filteredProjects && (
-              <List className={styles.result}>
-                {filteredProjects.map((project, i) => (
-                  <ListItem
-                    key={project.id}
-                    p={2}
-                    className={styles.listLtem}
-                    data-testid="list-item"
-                  >
-                    {project?.company}
-                  </ListItem>
-                ))}
-              </List>
-            )}
-          </CardBody>
+          {!isActive ? (
+            <CardBody className={styles.cardBody}>
+              Press the [x] or [y] key to display the Project Filter Component
+            </CardBody>
+          ) : (
+            <CardBody className={styles.cardBody}>
+              <Input
+                name="filter-projects"
+                placeholder="Filter projects"
+                type="text"
+                value={filter}
+                onChange={filterProjects}
+              />
+              {filteredProjects && (
+                <List className={styles.result}>
+                  {filteredProjects.map((project, i) => (
+                    <ListItem
+                      key={project.id}
+                      p={2}
+                      className={styles.listLtem}
+                      data-testid="list-item"
+                    >
+                      {project?.company}
+                    </ListItem>
+                  ))}
+                </List>
+              )}
+            </CardBody>
+          )}
         </Card>
       </Box>
     </Container>
