@@ -1,0 +1,16 @@
+.result {
+  width: 100%;
+}
+
+.result li:nth-child(odd) {
+  background-color: #f0f0f0;
+}
+
+.result li:nth-child(even) {
+  background-color: #f8f8f8;
+}
+
+.listItem {
+  padding: 8px;
+  border-bottom: 1px solid grey;
+}
