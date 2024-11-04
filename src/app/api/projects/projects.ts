@@ -1,6 +1,6 @@
 export const projects = [
   {
-    id: '234234',
+    _id: '234234',
     logo: 'publicissapient.png',
     logoSize: 'small',
     role: 'Front-end Lead/ Manager',
@@ -22,7 +22,7 @@ export const projects = [
     ],
   },
   {
-    id: '45634577',
+    _id: '45634577',
     logo: 'worldfirst.png',
     logoSize: 'small',
     role: 'Senior Software Engineer/ Team Lead',
@@ -40,7 +40,7 @@ export const projects = [
     ],
   },
   {
-    id: '345251',
+    _id: '345251',
     logo: 'ge.png',
     logoSize: 'small',
     role: 'Senior UI Developer',
@@ -58,7 +58,7 @@ export const projects = [
     ],
   },
   {
-    id: '24549834',
+    _id: '24549834',
     logo: 'cashflows.png',
     logoSize: 'small',
     role: 'Lead UI Developer',
@@ -71,7 +71,7 @@ export const projects = [
     links: [{ visual: 'www.cashflows.com', url: 'https://www.cashflows.com/' }],
   },
   {
-    id: '373456',
+    _id: '373456',
     logo: 'boilerjuice.svg',
     logoSize: 'large',
     role: 'Lead Front-end Developer',
@@ -86,7 +86,7 @@ export const projects = [
     ],
   },
   {
-    id: '593274',
+    _id: '593274',
     logo: 'cambridge-assessment.svg',
     logoSize: 'medium',
     role: 'Senior Front-end Developer',
@@ -108,7 +108,7 @@ export const projects = [
     ],
   },
   {
-    id: '474346',
+    _id: '474346',
     logo: 'tribal-worldwide.jpeg',
     logoSize: 'small',
     role: 'Senior Front-end Developer',
@@ -130,7 +130,7 @@ export const projects = [
     ],
   },
   {
-    id: '345456',
+    _id: '345456',
     logo: 'helix.svg',
     logoSize: 'medium',
     role: 'Senior Front-end Developer',
@@ -144,7 +144,7 @@ export const projects = [
     ],
   },
   {
-    id: '34726',
+    _id: '34726',
     logo: 'photobox.png',
     logoSize: 'medium',
     role: 'Senior Front-end Developer',
@@ -159,7 +159,7 @@ export const projects = [
     ],
   },
   {
-    id: '3836456',
+    _id: '3836456',
     logo: 'lastminute.png',
     logoSize: 'small',
     role: 'Senior Front-end Developer',
@@ -175,7 +175,7 @@ export const projects = [
     ],
   },
   {
-    id: '94663',
+    _id: '94663',
     logo: 'bauer.jpg',
     logoSize: 'small',
     role: 'Front-end Developer',
@@ -191,7 +191,7 @@ export const projects = [
     ],
   },
   {
-    id: '34725',
+    _id: '34725',
     logo: 'jam-engine-group.png',
     logoSize: 'small',
     role: 'Senior UI Developer',
@@ -209,7 +209,7 @@ export const projects = [
     ],
   },
   {
-    id: '234554',
+    _id: '234554',
     logo: 'rank-interactive.jpeg',
     logoSize: 'small',
     role: 'Lead Front-end Developer',
@@ -222,7 +222,7 @@ export const projects = [
     links: [{ visual: 'www.rank.com', url: 'https://www.rank.com' }],
   },
   {
-    id: '3453457',
+    _id: '3453457',
     logo: 'sapient.png',
     logoSize: 'small',
     role: 'Front-end Developer',
@@ -241,7 +241,7 @@ export const projects = [
     ],
   },
   {
-    id: '6734234',
+    _id: '6734234',
     logo: 'tyrrells-logo.svg',
     logoSize: 'medium',
     role: 'Front-end Developer',
@@ -257,7 +257,7 @@ export const projects = [
     ],
   },
   {
-    id: '567823',
+    _id: '567823',
     logo: 'addison-group.jpg',
     logoSize: 'small',
     role: 'Front-end Developer',
@@ -282,7 +282,7 @@ export const projects = [
     ],
   },
   {
-    id: '867234',
+    _id: '867234',
     logo: 'guardian.png',
     logoSize: 'small',
     className: 'guardian-logo',
@@ -300,7 +300,7 @@ export const projects = [
     ],
   },
   {
-    id: '234567',
+    _id: '234567',
     logo: 'qld.png',
     logoSize: 'small',
     className: 'qld-logo',
@@ -314,7 +314,7 @@ export const projects = [
     ],
   },
   {
-    id: '796234',
+    _id: '796234',
     logo: 'ogilvy.png',
     logoSize: 'small',
     className: 'ogilvy-logo',

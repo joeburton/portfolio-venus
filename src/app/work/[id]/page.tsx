@@ -1,24 +1,24 @@
-import { PageIntro } from "@/components/PageIntro";
+import { PageIntro } from '@/components/PageIntro';
 
-import { DisplayItem, LogoSize } from "@/components/DisplayItem";
-import { generateUniqueId } from "@/utils";
-import { Flex } from "@chakra-ui/react";
+import { DisplayItem, LogoSize } from '@/components/DisplayItem';
+import { generateUniqueId } from '@/utils';
+import { Flex } from '@chakra-ui/react';
 
-import { DisplayItemInterface } from "@/components/DisplayItem";
+import { DisplayItemInterface } from '@/components/DisplayItem';
 
-import styles from "../work.module.css";
+import styles from '../work.module.css';
 
 export async function generateStaticParams() {
-  const res = await fetch(`${process.env.BASE_URL}/api/projects`);
-  const projects = await res.json();
+  const res = await fetch(`${process.env.BASE_URL}/api/work`);
+  const work = await res.json();
 
-  return projects.map((project: DisplayItemInterface) => ({
-    id: project.id,
+  return work.map((project: DisplayItemInterface) => ({
+    id: project._id,
   }));
 }
 
 async function getPost(id: string): Promise<DisplayItemInterface> {
-  const res = await fetch(`${process.env.BASE_URL}/api/projects/${id}`);
+  const res = await fetch(`${process.env.BASE_URL}/api/work/${id}`);
 
   return res.json();
 }
@@ -33,7 +33,7 @@ export default async function ProjectDetailsPage({
   return (
     <>
       <PageIntro
-        pageTitle='Work'
+        pageTitle="Work"
         subText={
           <>
             Over the years, I&apos;ve gained experience in permanent, contract,
@@ -42,26 +42,26 @@ export default async function ProjectDetailsPage({
         }
         detail={
           <>
-            For more details, feel free to visit my{" "}
+            For more details, feel free to visit my{' '}
             <a
-              href='https://www.linkedin.com/in/joejamesburton'
-              target='_blank'
+              href="https://www.linkedin.com/in/joejamesburton"
+              target="_blank"
             >
               LinkedIn
-            </a>{" "}
+            </a>{' '}
             profile.
           </>
         }
       />
       <div className={styles.work}>
         <Flex
-          flexWrap='wrap'
-          maxWidth={{ base: "100%", md: "768px" }}
-          margin='0 auto'
+          flexWrap="wrap"
+          maxWidth={{ base: '100%', md: '768px' }}
+          margin="0 auto"
         >
           <DisplayItem
             logo={project.logo}
-            breakpointWidths={{ base: "100%" }}
+            breakpointWidths={{ base: '100%' }}
             logoSize={project.logoSize as LogoSize}
             role={project.role}
             company={project.company}

@@ -70,7 +70,7 @@ export const FilterProjects = ({ projects }: FilterProjectsProps) => {
                 <List className={styles.result}>
                   {filteredProjects.map((project, i) => (
                     <ListItem
-                      key={project.id}
+                      key={project._id}
                       p={2}
                       className={styles.listLtem}
                       data-testid="list-item"

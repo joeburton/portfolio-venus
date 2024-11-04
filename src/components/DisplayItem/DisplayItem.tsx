@@ -27,7 +27,7 @@ const logoPixelWidth: { [K in LogoSize]: string } = {
 };
 
 export type DisplayItemInterface = {
-  id?: string;
+  _id?: string;
   rowEnd?: boolean;
   breakpointWidths: { base?: string; lg?: string; xl?: string };
   logo: string;

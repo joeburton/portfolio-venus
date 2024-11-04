@@ -15,7 +15,7 @@ import styles from './work.module.css';
 
 async function getData() {
   try {
-    const res = await fetch(`${process.env.BASE_URL}/api/projects`);
+    const res = await fetch(`${process.env.BASE_URL}/api/work`);
     if (!res.ok) {
       throw new Error('Failed to fetch data');
     }
