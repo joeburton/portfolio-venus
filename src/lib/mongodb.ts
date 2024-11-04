@@ -1,47 +1,44 @@
 // src/lib/mongodb.ts
-import { MongoClient } from 'mongodb';
+import { MongoClient, ServerApiVersion } from 'mongodb';
 
+// Ensure MongoDB URI is provided
 if (!process.env.MONGODB_URI) {
   throw new Error('Please add your MongoDB URI to .env.local');
 }
 
 const uri = process.env.MONGODB_URI;
+if (!uri) {
+  throw new Error('Please define the MONGODB_URI environment variable.');
+}
 
-let client: MongoClient;
+// Define a module-level variable for the MongoDB client promise
 let clientPromise: Promise<MongoClient>;
 
-declare global {
-  // eslint-disable-next-line no-var
-  var _mongoClientPromise: Promise<MongoClient> | undefined;
-}
+// Use a module-scoped variable that is persistent in development
+let cachedClientPromise: Promise<MongoClient> | null = null;
 
-// Function to connect to MongoDB
-async function connectToDatabase(uri: string): Promise<MongoClient> {
-  client = new MongoClient(uri);
-
-  try {
-    await client.connect();
-    console.log('Connected to MongoDB');
-    return client;
-  } catch (error) {
-    console.error('MongoDB connection error:', error);
-    throw new Error('Failed to connect to MongoDB');
-  }
-}
-
-// Determine the connection method based on the environment
-if (process.env.NODE_ENV === 'development') {
-  // In development mode, we use a global variable to store the MongoDB client
-  if (!global._mongoClientPromise) {
-    global._mongoClientPromise = connectToDatabase(uri);
-  }
-  clientPromise = global._mongoClientPromise;
-} else {
-  // In production mode, we create a new client connection
-  clientPromise = connectToDatabase(uri).catch((error) => {
-    console.error('Failed to connect to MongoDB in production:', error);
-    throw error; // Rethrow error after logging
+function initializeMongoClient(): Promise<MongoClient> {
+  // Create a new MongoClient with options
+  const client = new MongoClient(uri, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    },
   });
+  return client.connect();
+}
+
+// Handle the connection setup based on environment
+if (process.env.NODE_ENV === 'development') {
+  // Use cached promise in development to avoid multiple connections
+  if (!cachedClientPromise) {
+    cachedClientPromise = initializeMongoClient();
+  }
+  clientPromise = cachedClientPromise;
+} else {
+  // Always initialize a new connection in production
+  clientPromise = initializeMongoClient();
 }
 
 export default clientPromise;
