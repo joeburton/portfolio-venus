@@ -8,14 +8,14 @@ import { DisplayItemInterface } from '@/components/DisplayItem';
 
 import styles from '../work.module.css';
 
-// export async function generateStaticParams() {
-//   const res = await fetch(`${process.env.BASE_URL}/api/work`);
-//   const work = await res.json();
+export async function generateStaticParams() {
+  const res = await fetch(`${process.env.BASE_URL}/api/work`);
+  const work = await res.json();
 
-//   return work.map((project: DisplayItemInterface) => ({
-//     id: project._id,
-//   }));
-// }
+  return work.map((project: DisplayItemInterface) => ({
+    id: project._id,
+  }));
+}
 
 async function getPost(id: string): Promise<DisplayItemInterface> {
   const res = await fetch(`${process.env.BASE_URL}/api/work/${id}`);

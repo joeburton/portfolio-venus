@@ -6,6 +6,7 @@ if (!process.env.MONGODB_URI) {
 }
 
 const uri = process.env.MONGODB_URI;
+
 let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
 
@@ -14,17 +15,33 @@ declare global {
   var _mongoClientPromise: Promise<MongoClient> | undefined;
 }
 
+// Function to connect to MongoDB
+async function connectToDatabase(uri: string): Promise<MongoClient> {
+  client = new MongoClient(uri);
+
+  try {
+    await client.connect();
+    console.log('Connected to MongoDB');
+    return client;
+  } catch (error) {
+    console.error('MongoDB connection error:', error);
+    throw new Error('Failed to connect to MongoDB');
+  }
+}
+
+// Determine the connection method based on the environment
 if (process.env.NODE_ENV === 'development') {
   // In development mode, we use a global variable to store the MongoDB client
   if (!global._mongoClientPromise) {
-    client = new MongoClient(uri);
-    global._mongoClientPromise = client.connect();
+    global._mongoClientPromise = connectToDatabase(uri);
   }
   clientPromise = global._mongoClientPromise;
 } else {
-  // In production mode, we use a normal client connection
-  client = new MongoClient(uri);
-  clientPromise = client.connect();
+  // In production mode, we create a new client connection
+  clientPromise = connectToDatabase(uri).catch((error) => {
+    console.error('Failed to connect to MongoDB in production:', error);
+    throw error; // Rethrow error after logging
+  });
 }
 
 export default clientPromise;
