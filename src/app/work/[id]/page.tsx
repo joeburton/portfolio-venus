@@ -9,7 +9,7 @@ import { DisplayItemInterface } from '@/components/DisplayItem';
 import styles from '../work.module.css';
 
 export async function generateStaticParams() {
-  const res = await fetch(`${process.env.BASE_URL}/api/work`);
+  const res = await fetch(`${process.env.BASE_URL}/api/projects`);
   const work = await res.json();
 
   return work.map((project: DisplayItemInterface) => ({
@@ -18,7 +18,7 @@ export async function generateStaticParams() {
 }
 
 async function getPost(id: string): Promise<DisplayItemInterface> {
-  const res = await fetch(`${process.env.BASE_URL}/api/work/${id}`);
+  const res = await fetch(`${process.env.BASE_URL}/api/projects/${id}`);
 
   return res.json();
 }
