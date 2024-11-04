@@ -1,44 +1,35 @@
-// src/lib/mongodb.ts
-import { MongoClient, ServerApiVersion } from 'mongodb';
+import { MongoClient } from 'mongodb';
 
-// Ensure MongoDB URI is provided
-if (!process.env.MONGODB_URI) {
-  throw new Error('Please add your MongoDB URI to .env.local');
+const uri = process.env.MONGODB_URI as string; // your mongodb connection string
+const options = {};
+
+declare global {
+  var _mongoClientPromise: Promise<MongoClient>;
 }
 
-const uri = process.env.MONGODB_URI;
-if (!uri) {
-  throw new Error('Please define the MONGODB_URI environment variable.');
-}
-
-// Define a module-level variable for the MongoDB client promise
-let clientPromise: Promise<MongoClient>;
-
-// Use a module-scoped variable that is persistent in development
-let cachedClientPromise: Promise<MongoClient> | null = null;
-
-function initializeMongoClient(): Promise<MongoClient> {
-  // Create a new MongoClient with options
-  const client = new MongoClient(uri, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    },
-  });
-  return client.connect();
-}
-
-// Handle the connection setup based on environment
-if (process.env.NODE_ENV === 'development') {
-  // Use cached promise in development to avoid multiple connections
-  if (!cachedClientPromise) {
-    cachedClientPromise = initializeMongoClient();
+class Singleton {
+  private static _instance: Singleton;
+  private client: MongoClient;
+  private clientPromise: Promise<MongoClient>;
+  private constructor() {
+    this.client = new MongoClient(uri, options);
+    this.clientPromise = this.client.connect();
+    if (process.env.NODE_ENV === 'development') {
+      // In development mode, use a global variable so that the value
+      // is preserved across module reloads caused by HMR (Hot Module Replacement).
+      global._mongoClientPromise = this.clientPromise;
+    }
   }
-  clientPromise = cachedClientPromise;
-} else {
-  // Always initialize a new connection in production
-  clientPromise = initializeMongoClient();
-}
 
+  public static get instance() {
+    if (!this._instance) {
+      this._instance = new Singleton();
+    }
+    return this._instance.clientPromise;
+  }
+}
+const clientPromise = Singleton.instance;
+
+// Export a module-scoped MongoClient promise. By doing this in a
+// separate module, the client can be shared across functions.
 export default clientPromise;
