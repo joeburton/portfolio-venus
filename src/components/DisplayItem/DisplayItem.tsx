@@ -61,21 +61,37 @@ const Skills = ({ skills }: SkillsInterface) => (
 
 export const DisplayItem = ({
   rowEnd = false,
-  breakpointWidths,
+  breakpointWidths = { base: '100%' },
   logo,
   logoSize,
   role,
   company,
   description,
   skills,
-  className,
-  links,
+  className = '',
+  links = [],
 }: DisplayItemInterface) => {
   const [open, setOpen] = useState(false);
 
-  const constrainContent = description.length > 300 ? true : false;
+  const constrainContent = description?.length > 300 ? true : false;
 
-  const skillSet: string[] = skills.split(',');
+  const skillSet: string[] = skills?.split(',');
+
+  if (!skillSet?.length) {
+    return (
+      <Box width={breakpointWidths}>
+        <Card variant="elevated" mr={[0, 0, 0, 5]} mb={5} shadow="md">
+          <CardBody
+            className={styles.cardBody}
+            minHeight={{ base: 'auto', lg: '520px', xl: '550px' }}
+            textAlign="center"
+          >
+            In complete data.
+          </CardBody>
+        </Card>
+      </Box>
+    );
+  }
 
   return (
     <Box width={breakpointWidths}>
@@ -114,7 +130,7 @@ export const DisplayItem = ({
             fontSize="sm"
             className={styles.contentItem}
           >
-            <Skills skills={skillSet} />
+            {<Skills skills={skillSet} />}
           </Text>
           <Text
             as="div"
