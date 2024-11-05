@@ -24,6 +24,7 @@ export const Projects: React.FC<{ projects: DisplayItemInterface[] }> = ({
 
   return projects.map((project, i) => {
     const rowEnd = (i + 1) % numberColumns === 0 ? true : false; // every third item.
+    if (!project.skills) return;
     return (
       <DisplayItem
         breakpointWidths={{ base: '100%', lg: '50%', xl: '33.3%' }}
