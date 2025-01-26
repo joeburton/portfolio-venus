@@ -22,7 +22,7 @@ import styles from "./experiments.module.css";
 
 async function getData() {
   try {
-    const res = await fetch(`${process.env.BASE_URL}/api/projects`);
+    const res = await fetch(`${process.env.BASE_URL}/api/work`);
     if (!res.ok) {
       throw new Error("Failed to fetch data");
     }
@@ -52,7 +52,6 @@ export default async function Experiments() {
             </CardBody>
           </Card>
         </Box>
-
         <Box maxWidth={"900px"} m="10px auto">
           <Card variant="elevated">
             <CardBody>
@@ -61,7 +60,7 @@ export default async function Experiments() {
                   <Box display={{ base: "none", lg: "block" }}>
                     <Image
                       src="/assets/ginger-software-engineer-ai/ginger-software-engineer-ai-7.png"
-                      alt="Ginger Software Engineer"
+                      alt="Ginger Software Engineer."
                     />
                   </Box>
                   <SimpleGrid
@@ -79,7 +78,6 @@ export default async function Experiments() {
             </CardBody>
           </Card>
         </Box>
-
         <Box maxWidth={"900px"} m="10px auto">
           <Card variant="elevated">
             <CardBody>

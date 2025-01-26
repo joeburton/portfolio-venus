@@ -13,7 +13,7 @@ export const DisplayRandomImages = () => {
         randomItems.map((item: string) => (
           <Image
             src={`/assets/ginger-software-engineer-ai/${item}`}
-            alt='Cliché image of a carrier pigeon. This image was generated using AI 🤓 how ironic.'
+            alt="Ginger Software Engine"
             key={item}
           />
         ))}
