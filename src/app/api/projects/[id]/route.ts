@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
 
-import { projects } from '../projects';
+import { projects } from "../projects";
 
 // Define the type for the request params
 interface Params {
@@ -14,7 +14,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
   const project = await getProjectById(id);
 
   if (!project) {
-    return NextResponse.json({ error: 'Document not found' }, { status: 404 });
+    return NextResponse.json({ error: "Document not found" }, { status: 404 });
   }
 
   return NextResponse.json(project);

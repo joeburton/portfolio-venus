@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
-import { work } from "@/data/work";
+import { projects } from "./projects";
 
 export async function GET() {
-  return NextResponse.json(work, { status: 200 });
+  return NextResponse.json(projects, { status: 200 });
 }
