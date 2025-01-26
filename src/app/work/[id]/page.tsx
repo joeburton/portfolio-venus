@@ -1,12 +1,12 @@
-import { PageIntro } from '@/components/PageIntro';
+import { PageIntro } from "@/components/PageIntro";
 
-import { DisplayItem, LogoSize } from '@/components/DisplayItem';
-import { generateUniqueId } from '@/utils';
-import { Flex } from '@chakra-ui/react';
+import { DisplayItem, LogoSize } from "@/components/DisplayItem";
+import { generateUniqueId } from "@/utils";
+import { Flex } from "@chakra-ui/react";
 
-import { DisplayItemInterface } from '@/components/DisplayItem';
+import { DisplayItemInterface } from "@/components/DisplayItem";
 
-import styles from '../work.module.css';
+import styles from "../work.module.css";
 
 export async function generateStaticParams() {
   const res = await fetch(`${process.env.BASE_URL}/api/work`);
@@ -42,13 +42,13 @@ export default async function ProjectDetailsPage({
         }
         detail={
           <>
-            For more details, feel free to visit my{' '}
+            For more details, feel free to visit my{" "}
             <a
               href="https://www.linkedin.com/in/joejamesburton"
               target="_blank"
             >
               LinkedIn
-            </a>{' '}
+            </a>{" "}
             profile.
           </>
         }
@@ -56,12 +56,12 @@ export default async function ProjectDetailsPage({
       <div className={styles.work}>
         <Flex
           flexWrap="wrap"
-          maxWidth={{ base: '100%', md: '768px' }}
+          maxWidth={{ base: "100%", md: "768px" }}
           margin="0 auto"
         >
           <DisplayItem
             logo={project.logo}
-            breakpointWidths={{ base: '100%' }}
+            breakpointWidths={{ base: "100%" }}
             logoSize={project.logoSize as LogoSize}
             role={project.role}
             company={project.company}

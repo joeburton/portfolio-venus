@@ -6,25 +6,25 @@ import {
   GridItem,
   Image,
   SimpleGrid,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
-import { items } from '@/data/items';
+import { items } from "@/data/items";
 
-import { BarGraph } from '@/components/BarGraph';
-import { PageIntro } from '@/components/PageIntro';
-import { DisplayRandomImages } from '@/components/DisplayRandomImages';
-import { SmartCarousel } from '@/components/SmartCarousel';
-import { Related } from '@/components/Related';
-import { FilterProjects } from '@/components/FilterProjects';
-import { DisplayItemInterface } from '@/components/DisplayItem';
+import { BarGraph } from "@/components/BarGraph";
+import { PageIntro } from "@/components/PageIntro";
+import { DisplayRandomImages } from "@/components/DisplayRandomImages";
+import { SmartCarousel } from "@/components/SmartCarousel";
+import { Related } from "@/components/Related";
+import { FilterProjects } from "@/components/FilterProjects";
+import { DisplayItemInterface } from "@/components/DisplayItem";
 
-import styles from './experiments.module.css';
+import styles from "./experiments.module.css";
 
 async function getData() {
   try {
     const res = await fetch(`${process.env.BASE_URL}/api/projects`);
     if (!res.ok) {
-      throw new Error('Failed to fetch data');
+      throw new Error("Failed to fetch data");
     }
     return res.json();
   } catch (error: unknown) {
@@ -32,8 +32,8 @@ async function getData() {
       console.error(error.message);
       throw error;
     } else {
-      console.error('Unexpected error');
-      throw new Error('Unexpected error occurred');
+      console.error("Unexpected error");
+      throw new Error("Unexpected error occurred");
     }
   }
 }
@@ -45,7 +45,7 @@ export default async function Experiments() {
     <>
       <PageIntro pageTitle="Experiments" subText={<>Just playing around.</>} />
       <div className={styles.experiments}>
-        <Box maxWidth={'900px'} m="10px auto">
+        <Box maxWidth={"900px"} m="10px auto">
           <Card variant="elevated">
             <CardBody>
               {projects && <FilterProjects projects={projects} />}
@@ -53,12 +53,12 @@ export default async function Experiments() {
           </Card>
         </Box>
 
-        <Box maxWidth={'900px'} m="10px auto">
+        <Box maxWidth={"900px"} m="10px auto">
           <Card variant="elevated">
             <CardBody>
               <SimpleGrid columns={[1, 1, 1, 2]} spacing={5}>
                 <Box>
-                  <Box display={{ base: 'none', lg: 'block' }}>
+                  <Box display={{ base: "none", lg: "block" }}>
                     <Image
                       src="/assets/ginger-software-engineer-ai/ginger-software-engineer-ai-7.png"
                       alt="Ginger Software Engineer"
@@ -67,7 +67,7 @@ export default async function Experiments() {
                   <SimpleGrid
                     columns={[3]}
                     spacing="10px"
-                    mt={[0, 0, 0, '10px']}
+                    mt={[0, 0, 0, "10px"]}
                   >
                     <DisplayRandomImages />
                   </SimpleGrid>
@@ -80,28 +80,28 @@ export default async function Experiments() {
           </Card>
         </Box>
 
-        <Box maxWidth={'900px'} m="10px auto">
+        <Box maxWidth={"900px"} m="10px auto">
           <Card variant="elevated">
             <CardBody>
               <BarGraph
                 data={[
-                  { label: 'A', value: 150 },
-                  { label: 'B', value: 234 },
-                  { label: 'C', value: 540 },
-                  { label: 'D', value: 230 },
+                  { label: "A", value: 150 },
+                  { label: "B", value: 234 },
+                  { label: "C", value: 540 },
+                  { label: "D", value: 230 },
                 ]}
               />
             </CardBody>
           </Card>
         </Box>
-        <Box maxWidth={'900px'} m="10px auto">
+        <Box maxWidth={"900px"} m="10px auto">
           <Card variant="elevated">
             <CardBody>
               <SmartCarousel items={items} />
             </CardBody>
           </Card>
         </Box>
-        <Box maxWidth={'900px'} m="10px auto">
+        <Box maxWidth={"900px"} m="10px auto">
           <Card variant="elevated">
             <CardBody>
               <SimpleGrid columns={1} spacing={8}>
@@ -135,7 +135,7 @@ export default async function Experiments() {
             </CardBody>
           </Card>
         </Box>
-        <Box maxWidth={'900px'} m="10px auto">
+        <Box maxWidth={"900px"} m="10px auto">
           <Card variant="elevated">
             <CardBody>content to come</CardBody>
           </Card>
