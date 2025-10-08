@@ -9,7 +9,6 @@ export async function GET() {
       .collection("companiesAndProjects")
       .find({})
       .toArray();
-    console.log(works);
     return NextResponse.json(works);
   } catch (error) {
     console.error("Error fetching works:", error);

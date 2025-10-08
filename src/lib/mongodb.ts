@@ -1,14 +1,16 @@
 // src/lib/mongodb.ts
-import { MongoClient, ServerApiVersion } from 'mongodb';
+import { MongoClient, ServerApiVersion } from "mongodb";
+
+const environment = process.env.NODE_ENV || "development";
+
+const uri =
+  environment === "development"
+    ? process.env.MONGODB_URI_LOCAL
+    : process.env.MONGODB_URI;
 
 // Ensure MongoDB URI is provided
-if (!process.env.MONGODB_URI) {
-  throw new Error('Please add your MongoDB URI to .env.local');
-}
-
-const uri = process.env.MONGODB_URI;
 if (!uri) {
-  throw new Error('Please define the MONGODB_URI environment variable.');
+  throw new Error("Please add your MongoDB URI to .env.local");
 }
 
 // Define a module-level variable for the MongoDB client promise
@@ -19,7 +21,7 @@ let cachedClientPromise: Promise<MongoClient> | null = null;
 
 function initializeMongoClient(): Promise<MongoClient> {
   // Create a new MongoClient with options
-  const client = new MongoClient(uri, {
+  const client = new MongoClient(uri!, {
     serverApi: {
       version: ServerApiVersion.v1,
       strict: true,
@@ -30,7 +32,7 @@ function initializeMongoClient(): Promise<MongoClient> {
 }
 
 // Handle the connection setup based on environment
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === "development") {
   // Use cached promise in development to avoid multiple connections
   if (!cachedClientPromise) {
     cachedClientPromise = initializeMongoClient();
