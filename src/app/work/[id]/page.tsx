@@ -8,6 +8,8 @@ import { DisplayItemInterface } from "@/components/DisplayItem";
 
 import styles from "../work.module.css";
 
+export const revalidate = 3600; // seconds — re-fetches data in background every hour
+
 export async function generateStaticParams() {
   const res = await fetch(`${process.env.BASE_URL}/api/work`);
   const work = await res.json();
