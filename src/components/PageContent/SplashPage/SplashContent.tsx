@@ -38,6 +38,22 @@ export const SplashContent = () => {
                 <UnorderedList styleType="'- '">
                   <ListItem>
                     <ChakraLink
+                      href="https://www.publicissapient.com/"
+                      isExternal
+                      textDecoration="underline"
+                    >
+                      Publicis Sapient
+                    </ChakraLink>
+                    ,{" "}
+                    <ChakraLink
+                      href="https://www.worldfirst.com"
+                      isExternal
+                      textDecoration="underline"
+                    >
+                      World First
+                    </ChakraLink>
+                    ,{" "}
+                    <ChakraLink
                       href="https://www.tribalworldwide.co.uk/"
                       isExternal
                       textDecoration="underline"
@@ -51,8 +67,8 @@ export const SplashContent = () => {
                       textDecoration="underline"
                     >
                       General Electric
-                    </ChakraLink>
-                    ,{" "}
+                    </ChakraLink>{" "}
+                    &{" "}
                     <ChakraLink
                       href="https://www.ogilvy.com/uk/about"
                       isExternal
@@ -60,35 +76,8 @@ export const SplashContent = () => {
                     >
                       Ogilvy & Mather
                     </ChakraLink>
-                    ,{" "}
-                    <ChakraLink
-                      href="https://www.lastminute.com/"
-                      isExternal
-                      textDecoration="underline"
-                    >
-                      lastminute.com
-                    </ChakraLink>{" "}
-                    &{" "}
-                    <ChakraLink
-                      href="https://www.worldfirst.com"
-                      isExternal
-                      textDecoration="underline"
-                    >
-                      World First
-                    </ChakraLink>
                   </ListItem>
                 </UnorderedList>
-              </ListItem>
-              <ListItem>
-                Currently I work for{" "}
-                <ChakraLink
-                  href="https://www.publicissapient.com/"
-                  isExternal
-                  textDecoration="underline"
-                >
-                  Publicis Sapient
-                </ChakraLink>{" "}
-                as a Front-end Lead/Manager.
               </ListItem>
             </UnorderedList>
           </CardBody>

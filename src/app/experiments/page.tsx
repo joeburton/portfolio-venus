@@ -17,6 +17,7 @@ import { SmartCarousel } from "@/components/SmartCarousel";
 import { Related } from "@/components/Related";
 import { FilterProjects } from "@/components/FilterProjects";
 import { DisplayItemInterface } from "@/components/DisplayItem";
+import { RememberingToCode } from "@/components/RememberingToCode";
 
 import styles from "./experiments.module.css";
 
@@ -136,6 +137,13 @@ export default async function Experiments() {
         <Box maxWidth={"900px"} m="10px auto">
           <Card variant="elevated">
             <CardBody>content to come</CardBody>
+          </Card>
+        </Box>
+        <Box maxWidth={"900px"} m="10px auto">
+          <Card variant="elevated">
+            <CardBody>
+              <RememberingToCode />
+            </CardBody>
           </Card>
         </Box>
       </div>
