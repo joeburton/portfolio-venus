@@ -11,6 +11,8 @@ export const metadata: Metadata = {
     "Explore Joe Burton's front-end development journey! Discover projects, skills, and experiences from leading teams at Publicis Sapient and WorldFirst to crafting innovative solutions at GE Power Digital and more. Passionate about React, JavaScript, and building exceptional web applications.",
 };
 
+export const revalidate = 3600;
+
 import styles from "./work.module.css";
 
 async function getData() {
