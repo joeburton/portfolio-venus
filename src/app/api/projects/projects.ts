@@ -37,6 +37,24 @@ export const projects = [
     ],
   },
   {
+    _id: "6796a5e1a2a569c729ee2e24",
+    logo: "ge.png",
+    logoSize: "small",
+    role: "Senior UI Developer",
+    company: "GE Power Digital",
+    description:
+      "<p>Whilst with GE I worked on a SPA (Single Page Application) building a tool to help the telecoms industry to locate, route and cost new fibre connections. We used Web Components with Polymer to build UI Components, SASS for the CSS, and Node.js with Express for the back-end. We used Mocha and Chai to write our tests on the front-end and Gulp for the build step.</p><p>I also introduced the team at GE to the use of React and Redux with Jest and Enzyme for testing. Using React I built a SPA tool to demonstrate the use of API’s developed for the telecoms routing application. This project was also used as a way for the team to learn React, Redux, Jest and Webpack. I held several one-to-one sessions with other developers explaining how to structure a React and Redux application and demonstrate component development and best practices. We worked in an agile manner with fortnightly sprint cycles.</p>",
+    skills:
+      "React, JavaScript, Redux, Jest, Enzyme, Webpack, Web Components, Polymer, HTML, SASS, LESS, CSS, Gulp",
+    className: "ge-logo",
+    links: [
+      {
+        visual: "www.ge.com/power/software",
+        url: "https://www.ge.com/power/software",
+      },
+    ],
+  },
+  {
     _id: "6796a5e1a2a569c729ee2e25",
     logo: "cashflows.png",
     logoSize: "small",
@@ -62,55 +80,6 @@ export const projects = [
     className: "boilerjuice-logo",
     links: [
       { visual: "www.boilerjuice.com", url: "https://www.boilerjuice.com" },
-    ],
-  },
-  {
-    _id: "6796a5e1a2a569c729ee2e24",
-    logo: "ge.png",
-    logoSize: "small",
-    role: "Senior UI Developer",
-    company: "GE Power Digital",
-    description:
-      "<p>Whilst with GE I worked on a SPA (Single Page Application) building a tool to help the telecoms industry to locate, route and cost new fibre connections. We used Web Components with Polymer to build UI Components, SASS for the CSS, and Node.js with Express for the back-end. We used Mocha and Chai to write our tests on the front-end and Gulp for the build step.</p><p>I also introduced the team at GE to the use of React and Redux with Jest and Enzyme for testing. Using React I built a SPA tool to demonstrate the use of API’s developed for the telecoms routing application. This project was also used as a way for the team to learn React, Redux, Jest and Webpack. I held several one-to-one sessions with other developers explaining how to structure a React and Redux application and demonstrate component development and best practices. We worked in an agile manner with fortnightly sprint cycles.</p>",
-    skills:
-      "React, JavaScript, Redux, Jest, Enzyme, Webpack, Web Components, Polymer, HTML, SASS, LESS, CSS, Gulp",
-    className: "ge-logo",
-    links: [
-      {
-        visual: "www.ge.com/power/software",
-        url: "https://www.ge.com/power/software",
-      },
-    ],
-  },
-  {
-    _id: "6796a5e1a2a569c729ee2e2a",
-    logo: "photobox.png",
-    logoSize: "medium",
-    role: "Senior Front-end Developer",
-    company: "Photobox",
-    description:
-      "<p>I worked for PhotoBox in the incubator team on a project developing a Mobile First Responsive website for the sale of Birth Announcement Cards. I worked across the front-end and back-end of the website. On the front-end we used JavaScript and jQuery with Browserify to handle modules and Grunt to manage the front-end workflow. On the back-end of the site we used Node with the Express framework.</p>",
-    skills:
-      "JavaScript, jQuery, Node.js, Express, Handlebars, Browserify, Grunt, HTML5, CSS3, SASS",
-    className: "photobox-logo",
-    links: [
-      { visual: "www.photobox.co.uk", url: "https://www.photobox.co.uk" },
-    ],
-  },
-  {
-    _id: "6796a5e1a2a569c729ee2e30",
-    logo: "tyrrells-logo.svg",
-    logoSize: "medium",
-    role: "Front-end Developer",
-    company: "Freelance",
-    description: "<p>Tyrrells Crisps</p>",
-    skills: "JavaScript, jQuery, HTML, CSS3",
-    className: "tyrrells-logo",
-    links: [
-      {
-        visual: "www.tyrrellscrisps.co.uk",
-        url: "http://www.tyrrellscrisps.co.uk/",
-      },
     ],
   },
   {
@@ -172,19 +141,18 @@ export const projects = [
     ],
   },
   {
-    _id: "6796a5e1a2a569c729ee2e2c",
-    logo: "bauer.jpg",
-    logoSize: "small",
-    role: "Front-end Developer",
-    company: "Bauer Media",
+    _id: "6796a5e1a2a569c729ee2e2a",
+    logo: "photobox.png",
+    logoSize: "medium",
+    role: "Senior Front-end Developer",
+    company: "Photobox",
     description:
-      "<p>I was employed by Bauer Media to work across two teams, the UI Team and the Back end CMS Team. In the UI team I contributed towards the development of the responsive front-end build of the new Closer Magazine online edition creating responsive HTML/CSS page templates and writing any JavaScript functionality where necessary. In the Back end Team I was responsible for developing JavaScript/ BackboneJS functionality that managed the adding, editing and deleting of articles and their supporting image and video assets.</p>",
+      "<p>I worked for PhotoBox in the incubator team on a project developing a Mobile First Responsive website for the sale of Birth Announcement Cards. I worked across the front-end and back-end of the website. On the front-end we used JavaScript and jQuery with Browserify to handle modules and Grunt to manage the front-end workflow. On the back-end of the site we used Node with the Express framework.</p>",
     skills:
-      "JavaScript, Backbone, Mustache, Require, Grunt, Jasime, HTML5, CSS3, LESS, SASS, Responsive Design & Development",
-    className: "bauer-logo",
+      "JavaScript, jQuery, Node.js, Express, Handlebars, Browserify, Grunt, HTML5, CSS3, SASS",
+    className: "photobox-logo",
     links: [
-      { visual: "www.bauermedia.co.uk", url: "https://www.bauermedia.co.uk" },
-      { visual: "www.closeronline.co.uk", url: "https://closeronline.co.uk" },
+      { visual: "www.photobox.co.uk", url: "https://www.photobox.co.uk" },
     ],
   },
   {
@@ -201,6 +169,22 @@ export const projects = [
     links: [
       { visual: "www.lastminute.com", url: "http://www.lastminute.com" },
       { visual: "m.lastminute.com", url: "http://m.lastminute.com" },
+    ],
+  },
+  {
+    _id: "6796a5e1a2a569c729ee2e2c",
+    logo: "bauer.jpg",
+    logoSize: "small",
+    role: "Front-end Developer",
+    company: "Bauer Media",
+    description:
+      "<p>I was employed by Bauer Media to work across two teams, the UI Team and the Back end CMS Team. In the UI team I contributed towards the development of the responsive front-end build of the new Closer Magazine online edition creating responsive HTML/CSS page templates and writing any JavaScript functionality where necessary. In the Back end Team I was responsible for developing JavaScript/ BackboneJS functionality that managed the adding, editing and deleting of articles and their supporting image and video assets.</p>",
+    skills:
+      "JavaScript, Backbone, Mustache, Require, Grunt, Jasime, HTML5, CSS3, LESS, SASS, Responsive Design & Development",
+    className: "bauer-logo",
+    links: [
+      { visual: "www.bauermedia.co.uk", url: "https://www.bauermedia.co.uk" },
+      { visual: "www.closeronline.co.uk", url: "https://closeronline.co.uk" },
     ],
   },
   {
@@ -239,7 +223,7 @@ export const projects = [
     logo: "sapient.png",
     logoSize: "small",
     role: "Front-end Developer",
-    company: "Sapient",
+    company: "Sapient Nitro",
     description:
       "<p>Whilst working for Sapient on this contract I was based client side at John Lewis, working in a team of Front-end Developers in an Agile Software Development Environment. I was responsible for creating well structured JavaScript, jQuery functionality and clean HTML/CSS template components keeping all code as re-usable and standards compliant as possible. We introduced HTML5 and CSS3 to the project using a progressive enhancement approach so as not to limit the site to just the latest browsers.</p>",
     skills: "JavaScript, jQuery, HTML, CSS3",
@@ -251,6 +235,22 @@ export const projects = [
       },
       { visual: "www.johnlewis.com", url: "http://johnlewis.com" },
       { visual: "www.sharehappy.com", url: "http://www.sharehappy.com" },
+    ],
+  },
+  {
+    _id: "6796a5e1a2a569c729ee2e30",
+    logo: "tyrrells-logo.svg",
+    logoSize: "medium",
+    role: "Front-end Developer",
+    company: "Freelance",
+    description: "<p>Tyrrells Crisps</p>",
+    skills: "JavaScript, jQuery, HTML, CSS3",
+    className: "tyrrells-logo",
+    links: [
+      {
+        visual: "www.tyrrellscrisps.co.uk",
+        url: "http://www.tyrrellscrisps.co.uk/",
+      },
     ],
   },
   {
