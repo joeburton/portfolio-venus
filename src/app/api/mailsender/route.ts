@@ -9,8 +9,6 @@ if (!SENDGRID_API_KEY) {
 
 sendgrid.setApiKey(SENDGRID_API_KEY);
 
-console.log(SENDGRID_API_KEY);
-
 export async function POST(req: NextRequest) {
   try {
     const { name, email, phoneNumber, message } = await req.json();
@@ -24,10 +22,11 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ success: true }, { status: 200 });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error(error);
+    const message = error instanceof Error ? error.message : String(error);
     return NextResponse.json(
-      { error: "Failed to send email" },
+      { error: "Failed to send email", detail: message },
       { status: 500 }
     );
   }
