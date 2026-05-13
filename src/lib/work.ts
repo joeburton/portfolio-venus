@@ -7,6 +7,7 @@ export async function getWorkProjects(): Promise<DisplayItemInterface[]> {
   return db
     .collection<DisplayItemInterface>("companiesAndProjects")
     .find({})
+    .sort({ sortOrder: 1 })
     .toArray();
 }
 

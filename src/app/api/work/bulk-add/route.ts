@@ -32,7 +32,14 @@ export async function POST(request: Request) {
     }
 
     // Insert the array of documents into the "companiesAndProjects" collection
-    const result = await db.collection("companiesAndProjects").insertMany(data);
+    const dataWithOrder = data.map((doc: object, index: number) => ({
+      ...doc,
+      sortOrder: index,
+    }));
+
+    const result = await db
+      .collection("companiesAndProjects")
+      .insertMany(dataWithOrder);
 
     // MongoDB will automatically assign a unique _id to each document
     return NextResponse.json(
