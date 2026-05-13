@@ -21,14 +21,23 @@ export async function POST(request: Request) {
     const db = client.db("work");
 
     const data = await request.json();
-    const result = await db.collection("companiesAndProjects").insertOne(data);
+
+    const last = await db
+      .collection("companiesAndProjects")
+      .findOne({}, { sort: { sortOrder: -1 }, projection: { sortOrder: 1 } });
+
+    const sortOrder = last?.sortOrder != null ? last.sortOrder + 1 : 0;
+
+    const result = await db
+      .collection("companiesAndProjects")
+      .insertOne({ ...data, sortOrder });
 
     return NextResponse.json(result, { status: 201 });
   } catch (error) {
     console.error("Error adding new work:", error);
     return NextResponse.json(
       { message: "Error adding new work" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
