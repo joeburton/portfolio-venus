@@ -2,6 +2,7 @@ import { DisplayItemInterface } from "@/components/DisplayItem";
 import { PageIntro } from "@/components/PageIntro";
 import { Projects } from "@/components/Projects";
 import { Flex } from "@chakra-ui/react";
+import { getWorkProjects } from "@/lib/work";
 
 import type { Metadata } from "next";
 
@@ -15,26 +16,8 @@ export const revalidate = 3600;
 
 import styles from "./work.module.css";
 
-async function getData() {
-  try {
-    const res = await fetch(`${process.env.BASE_URL}/api/work`);
-    if (!res.ok) {
-      throw new Error("Failed to fetch data");
-    }
-    return res.json();
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      console.error(error.message);
-      throw error;
-    } else {
-      console.error("Unexpected error");
-      throw new Error("Unexpected error occurred");
-    }
-  }
-}
-
 export default async function Work() {
-  const projects: DisplayItemInterface[] = await getData();
+  const projects: DisplayItemInterface[] = await getWorkProjects();
   return (
     <>
       <PageIntro

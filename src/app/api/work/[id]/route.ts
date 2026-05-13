@@ -1,37 +1,28 @@
 import { NextResponse } from "next/server";
-import clientPromise from "@/lib/mongodb";
-import { ObjectId } from "mongodb";
+import { getWorkProjectById } from "@/lib/work";
 
 export async function GET(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string } },
 ) {
   const { id } = params;
 
   try {
-    const client = await clientPromise;
-    const db = client.db("work");
+    const record = await getWorkProjectById(id);
 
-    // Convert the id to an ObjectId
-    const record = await db
-      .collection("companiesAndProjects")
-      .findOne({ _id: new ObjectId(id) });
-
-    // Check if the record exists
     if (!record) {
       return NextResponse.json(
         { message: "Record not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
-    // Return the record as JSON
     return NextResponse.json(record);
   } catch (error) {
     console.error("Error fetching record:", error);
     return NextResponse.json(
       { message: "Error fetching record" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
