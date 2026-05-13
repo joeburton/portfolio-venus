@@ -42,6 +42,7 @@ export const ContactForm = () => {
     message: "",
   });
 
+  const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [isClient, setIsClient] = useState<boolean>(false);
@@ -51,7 +52,7 @@ export const ContactForm = () => {
   }, []);
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -90,6 +91,8 @@ export const ContactForm = () => {
     const phoneNumberError = validatePhoneNumber(formData.phoneNumber);
     const messageError = validateMessage(formData.message);
 
+    if (honeypot) return;
+
     if (nameError || emailError || phoneNumberError || messageError) {
       setErrors({
         name: nameError,
@@ -113,7 +116,7 @@ export const ContactForm = () => {
               "Access-Control-Allow-Origin": "*",
               "Content-Type": "application/json",
             },
-          }
+          },
         );
 
         // success
@@ -149,93 +152,109 @@ export const ContactForm = () => {
   }
 
   return (
-    <Box as='form' onSubmit={handleSubmit}>
-      <FormControl id='name' mb={8} isInvalid={errors.name ? true : false}>
-        <FormLabel mb={1} htmlFor='name' fontWeight='normal' color='#393934'>
+    <Box as="form" onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="website"
+        value={honeypot}
+        onChange={(e) => setHoneypot(e.target.value)}
+        tabIndex={-1}
+        aria-hidden="true"
+        autoComplete="off"
+        style={{
+          position: "absolute",
+          left: "-9999px",
+          width: "1px",
+          height: "1px",
+          opacity: 0,
+        }}
+      />
+      <FormControl id="name" mb={8} isInvalid={errors.name ? true : false}>
+        <FormLabel mb={1} htmlFor="name" fontWeight="normal" color="#393934">
           Name
         </FormLabel>
         <Input
-          type='text'
-          name='name'
+          type="text"
+          name="name"
           value={formData.name}
           onChange={handleChange}
           disabled={isSubmitting}
         />
-        <FormErrorMessage position='absolute' m='4px 0 8px 0'>
+        <FormErrorMessage position="absolute" m="4px 0 8px 0">
           {errors.name}
         </FormErrorMessage>
       </FormControl>
 
-      <FormControl id='email' mb={8} isInvalid={errors.email ? true : false}>
-        <FormLabel mb={1} fontWeight='normal' color='#393934'>
+      <FormControl id="email" mb={8} isInvalid={errors.email ? true : false}>
+        <FormLabel mb={1} fontWeight="normal" color="#393934">
           Email
         </FormLabel>
         <Input
-          type='email'
-          name='email'
+          type="email"
+          name="email"
           value={formData.email}
           onChange={handleChange}
           disabled={isSubmitting}
         />
-        <FormErrorMessage position='absolute' m='4px 0 8px 0'>
+        <FormErrorMessage position="absolute" m="4px 0 8px 0">
           {errors.email}
         </FormErrorMessage>
       </FormControl>
 
       <FormControl
-        id='phoneNumber'
+        id="phoneNumber"
         mb={8}
         isInvalid={errors.phoneNumber ? true : false}
       >
-        <FormLabel mb={1} fontWeight='normal' color='#393934'>
+        <FormLabel mb={1} fontWeight="normal" color="#393934">
           Phone Number
         </FormLabel>
         <Input
-          type='tel'
-          name='phoneNumber'
+          type="tel"
+          name="phoneNumber"
           value={formData.phoneNumber}
           onChange={handleChange}
           disabled={isSubmitting}
         />
-        <FormErrorMessage position='absolute' m='4px 0 8px 0'>
+        <FormErrorMessage position="absolute" m="4px 0 8px 0">
           {errors.phoneNumber}
         </FormErrorMessage>
       </FormControl>
 
       <FormControl
-        id='message'
+        id="message"
         mb={4}
         isInvalid={errors.message ? true : false}
       >
-        <FormLabel mb={1} fontWeight='normal' color='#393934'>
+        <FormLabel mb={1} fontWeight="normal" color="#393934">
           Message
         </FormLabel>
         <Textarea
-          name='message'
+          name="message"
           value={formData.message}
           onChange={handleChange}
-          minHeight='150px'
+          minHeight="150px"
           disabled={isSubmitting}
         />
-        <FormErrorMessage position='absolute' m='4px 0 8px 0'>
+        <FormErrorMessage position="absolute" m="4px 0 8px 0">
           {errors.message}
         </FormErrorMessage>
       </FormControl>
 
       <Button
-        m='1rem 1rem 0 0'
-        colorScheme='teal'
-        type='submit'
-        variant='outline'
+        m="1rem 1rem 0 0"
+        colorScheme="teal"
+        type="submit"
+        variant="outline"
         isLoading={isSubmitting}
       >
         Submit
       </Button>
       <Button
-        mt='1rem'
-        colorScheme='teal'
-        type='reset'
-        variant='outline'
+        mt="1rem"
+        colorScheme="teal"
+        type="reset"
+        variant="outline"
         onClick={handleReset}
       >
         Reset
