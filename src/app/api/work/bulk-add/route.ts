@@ -27,7 +27,7 @@ export async function POST(request: Request) {
     if (!Array.isArray(data)) {
       return NextResponse.json(
         { message: "Data should be an array" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -37,13 +37,13 @@ export async function POST(request: Request) {
     // MongoDB will automatically assign a unique _id to each document
     return NextResponse.json(
       { message: "Documents inserted", insertedIds: result.insertedIds },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Error inserting documents:", error);
     return NextResponse.json(
       { message: "Error inserting documents" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

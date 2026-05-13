@@ -15,7 +15,10 @@ export const projects = [
         visual: "www.publicissapient.com",
         url: "https://www.publicissapient.com",
       },
-      { visual: "www.energysage.fr", url: "https://www.energysage.fr" },
+      {
+        visual: "www.energysage.fr",
+        url: "https://www.energysage.fr",
+      },
     ],
   },
   {
@@ -65,7 +68,12 @@ export const projects = [
     skills:
       "React, JavaScript, Jest, Enzyme, Webpack, Bootstrap, Material UI, HTML, CSS, SASS, LESS, Gulp",
     className: "cashflows-logo",
-    links: [{ visual: "www.cashflows.com", url: "https://www.cashflows.com/" }],
+    links: [
+      {
+        visual: "www.cashflows.com",
+        url: "https://www.cashflows.com/",
+      },
+    ],
   },
   {
     _id: "6796a5e1a2a569c729ee2e26",
@@ -79,7 +87,10 @@ export const projects = [
       "JavaScript, Browserify, Material UI, Bootstrap, SASS, HTML, CSS, Jasime, Karma, Gulp",
     className: "boilerjuice-logo",
     links: [
-      { visual: "www.boilerjuice.com", url: "https://www.boilerjuice.com" },
+      {
+        visual: "www.boilerjuice.com",
+        url: "https://www.boilerjuice.com",
+      },
     ],
   },
   {
@@ -123,7 +134,10 @@ export const projects = [
         visual: "perfect.volkswagen.co.uk",
         url: "https://perfect.volkswagen.co.uk/perfect/app",
       },
-      { visual: "www.aviosgroup.com", url: "http://www.aviosgroup.com" },
+      {
+        visual: "www.aviosgroup.com",
+        url: "http://www.aviosgroup.com",
+      },
     ],
   },
   {
@@ -137,7 +151,10 @@ export const projects = [
     skills: "JavaScript, jQuery, Browserify, PHP, HTML5, CSS3, Gulp",
     className: "helix-logo",
     links: [
-      { visual: "www.helixproperty.co.uk", url: "http://helixproperty.co.uk" },
+      {
+        visual: "www.helixproperty.co.uk",
+        url: "http://helixproperty.co.uk",
+      },
     ],
   },
   {
@@ -152,7 +169,10 @@ export const projects = [
       "JavaScript, jQuery, Node.js, Express, Handlebars, Browserify, Grunt, HTML5, CSS3, SASS",
     className: "photobox-logo",
     links: [
-      { visual: "www.photobox.co.uk", url: "https://www.photobox.co.uk" },
+      {
+        visual: "www.photobox.co.uk",
+        url: "https://www.photobox.co.uk",
+      },
     ],
   },
   {
@@ -167,8 +187,14 @@ export const projects = [
       "JavaScript, Backbone, Mustache, Require, Grunt, Jasime, HTML5, CSS3, LESS, SASS, Bootstrap, Responsive Design & Development",
     className: "lmn-logo",
     links: [
-      { visual: "www.lastminute.com", url: "http://www.lastminute.com" },
-      { visual: "m.lastminute.com", url: "http://m.lastminute.com" },
+      {
+        visual: "www.lastminute.com",
+        url: "http://www.lastminute.com",
+      },
+      {
+        visual: "m.lastminute.com",
+        url: "http://m.lastminute.com",
+      },
     ],
   },
   {
@@ -183,8 +209,14 @@ export const projects = [
       "JavaScript, Backbone, Mustache, Require, Grunt, Jasime, HTML5, CSS3, LESS, SASS, Responsive Design & Development",
     className: "bauer-logo",
     links: [
-      { visual: "www.bauermedia.co.uk", url: "https://www.bauermedia.co.uk" },
-      { visual: "www.closeronline.co.uk", url: "https://closeronline.co.uk" },
+      {
+        visual: "www.bauermedia.co.uk",
+        url: "https://www.bauermedia.co.uk",
+      },
+      {
+        visual: "www.closeronline.co.uk",
+        url: "https://closeronline.co.uk",
+      },
     ],
   },
   {
@@ -198,7 +230,12 @@ export const projects = [
     skills:
       "Team Leadership, Responsive Design & Development, Backbone, JavaScript, jQuery, HTML5, LESS, CSS3",
     className: "bluesquare-logo",
-    links: [{ visual: "www.rank.com", url: "https://www.rank.com" }],
+    links: [
+      {
+        visual: "www.rank.com",
+        url: "https://www.rank.com",
+      },
+    ],
   },
   {
     _id: "6796a5e1a2a569c729ee2e2d",
@@ -211,7 +248,10 @@ export const projects = [
     skills: "JavaScript, jQuery, Backbone, Underscore, HTML5, CSS3, LESS, CSS",
     className: "jam-logo",
     links: [
-      { visual: "enginegroup.com/uk", url: "https://enginegroup.com/uk" },
+      {
+        visual: "enginegroup.com/uk",
+        url: "https://enginegroup.com/uk",
+      },
       {
         visual: "www.thesun.co.uk/fabulous",
         url: "https://www.thesun.co.uk/fabulous",
@@ -233,8 +273,14 @@ export const projects = [
         visual: "www.publicissapient.com",
         url: "https://www.publicissapient.com/",
       },
-      { visual: "www.johnlewis.com", url: "http://johnlewis.com" },
-      { visual: "www.sharehappy.com", url: "http://www.sharehappy.com" },
+      {
+        visual: "www.johnlewis.com",
+        url: "http://johnlewis.com",
+      },
+      {
+        visual: "www.sharehappy.com",
+        url: "http://www.sharehappy.com",
+      },
     ],
   },
   {
@@ -289,7 +335,10 @@ export const projects = [
       "<p>I worked for the Guardian as a Front-end Developer creating HTML/ CSS cross browser/ platform compliant templates for www.thegreatplanthunt.org.</p>",
     skills: "JavaScript, jQuery, HTML, CSS3",
     links: [
-      { visual: "www.theguardian.com", url: "https://www.theguardian.com/" },
+      {
+        visual: "www.theguardian.com",
+        url: "https://www.theguardian.com/",
+      },
       {
         visual: "www.greatplanthunt.org",
         url: "http://www.greatplanthunt.org",
@@ -307,7 +356,10 @@ export const projects = [
       "<p>DOC (Department of Communities) Queensland Government Australia. I worked for the DOC on HTML/ CSS table-less page design and development and the integration of front-end templates with their PHP based CMS.</p>",
     skills: "Flash, JavaScript, jQuery, HTML, CSS",
     links: [
-      { visual: "https://www.qld.gov.au", url: "https://www.qld.gov.au/" },
+      {
+        visual: "https://www.qld.gov.au",
+        url: "https://www.qld.gov.au/",
+      },
     ],
   },
   {
@@ -320,6 +372,11 @@ export const projects = [
     description:
       "<p>I worked for Ogilvy as a Developer working across a broad range of brands such as BT, Yahoo, Amex and Unilever. I was responsible for the front-end build of websites adhering to strict brand-guidelines and W3C best practises.</p>",
     skills: "Flash, JavaScript, jQuery, HTML, CSS",
-    links: [{ visual: "https://ogilvy.co.uk", url: "https://ogilvy.co.uk" }],
+    links: [
+      {
+        visual: "https://ogilvy.co.uk",
+        url: "https://ogilvy.co.uk",
+      },
+    ],
   },
 ];

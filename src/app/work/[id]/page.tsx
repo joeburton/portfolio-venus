@@ -5,24 +5,22 @@ import { generateUniqueId } from "@/utils";
 import { Flex } from "@chakra-ui/react";
 
 import { DisplayItemInterface } from "@/components/DisplayItem";
+import { getWorkProjectById, getWorkProjects } from "@/lib/work";
 
 import styles from "../work.module.css";
 
 export const revalidate = 3600; // seconds — re-fetches data in background every hour
 
 export async function generateStaticParams() {
-  const res = await fetch(`${process.env.BASE_URL}/api/work`);
-  const work = await res.json();
+  const work = await getWorkProjects();
 
   return work.map((project: DisplayItemInterface) => ({
     id: project._id,
   }));
 }
 
-async function getPost(id: string): Promise<DisplayItemInterface> {
-  const res = await fetch(`${process.env.BASE_URL}/api/work/${id}`);
-
-  return res.json();
+async function getPost(id: string): Promise<DisplayItemInterface | null> {
+  return getWorkProjectById(id);
 }
 
 export default async function ProjectDetailsPage({
@@ -30,8 +28,10 @@ export default async function ProjectDetailsPage({
 }: {
   params: { id: string };
 }) {
-  console.log(params);
   const project = await getPost(params.id);
+  if (!project) {
+    return <div>Project not found.</div>;
+  }
   return (
     <>
       <PageIntro
