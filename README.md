@@ -38,11 +38,10 @@ src/
 │       ├── mailsender/          # POST: sends contact-form email via Nodemailer/Gmail
 │       ├── work/                # CRUD endpoints backed by MongoDB
 │       │   ├── route.ts                 # GET all work projects
-│       │   ├── [id]/route.ts            # GET single project
-│       │   ├── add-one/route.ts         # POST single project
-│       │   ├── bulk-add/route.ts        # POST many projects
-│       │   ├── delete-one/[id]/route.ts # DELETE single project
-│       │   └── delete-all/route.ts      # DELETE all projects
+│       │   ├── [id]/route.ts            # GET + DELETE a single project by _id
+│       │   ├── add-one/route.ts         # POST a single project (admin)
+│       │   ├── bulk-add/route.ts        # POST many projects — idempotent upsert (admin)
+│       │   └── delete-all/route.ts      # DELETE every project (admin)
 │       └── projects/            # GET endpoints backed by an in-memory dataset
 │           ├── route.ts                 # GET all projects
 │           ├── [id]/route.ts            # GET single project
@@ -71,7 +70,8 @@ src/
 │   └── useToggleOnKeys.ts       # Toggle state on configurable keypresses
 ├── lib/                         # Server-side helpers
 │   ├── mongodb.ts               # MongoClient with dev/prod connection handling
-│   └── work.ts                  # MongoDB queries for the "work" database
+│   ├── work.ts                  # MongoDB queries + WorkDoc type for the "work" database
+│   └── adminGuard.ts            # assertAdmin() — protects destructive /api/work routes
 ├── theme/                       # Chakra UI theme (breakpoints, fonts, global styles)
 ├── utils/                       # Misc utility helpers
 └── css/                         # Global stylesheets (main.css, reset.css)
@@ -121,9 +121,18 @@ NEXT_PUBLIC_BASE_URL=http://localhost:8080
 
 # Base URL used by server-side fetches in /experiments
 BASE_URL=http://localhost:8080
+
+# Shared secret guarding the destructive /api/work admin routes
+# (add-one, bulk-add, delete-all, DELETE /api/work/[id]).
+# Not needed locally — NODE_ENV=development bypasses the guard.
+# In production, set this and send it as the `x-admin-secret` header.
+# Generate one with: openssl rand -hex 32
+ADMIN_API_SECRET=change-me-to-a-long-random-string
 ```
 
-The MongoDB `work` database is expected to contain a `companiesAndProjects` collection. Documents follow the `DisplayItemInterface` shape (see `src/components/DisplayItem/DisplayItem.tsx`) with a `sortOrder` field controlling display order. You can seed data via the `POST /api/work/bulk-add` endpoint.
+The MongoDB `work` database is expected to contain a `companiesAndProjects` collection. Documents follow the `DisplayItemInterface` shape (see `src/components/DisplayItem/DisplayItem.tsx`) with a `sortOrder` field controlling display order.
+
+**`_id` is an application-owned string, not a MongoDB `ObjectId`.** The canonical dataset lives in `src/app/api/projects/projects.ts`, where each record carries its own stable `_id` (e.g. `"6796a5e1a2a569c729ee2e22"`). Keeping ids in the source file means they survive a wipe-and-reseed, so bookmarked `/work/[id]` URLs and API calls keep working. All `/api/work` routes therefore query by string `_id` — see `WorkDoc` in `src/lib/work.ts`. Seed the collection with `POST /api/work/bulk-add` (see [Managing work data](#managing-work-data)).
 
 ### Scripts
 
@@ -144,26 +153,73 @@ All endpoints are implemented as Next.js Route Handlers under `src/app/api`.
 ### `POST /api/mailsender`
 Sends the contact form via Nodemailer (Gmail). Expects JSON: `{ name, email, phoneNumber, message }`.
 
+Endpoints marked **(admin)** are protected by `assertAdmin()` (`src/lib/adminGuard.ts`): they run freely when `NODE_ENV=development`, and in every other environment require an `x-admin-secret` header matching `ADMIN_API_SECRET`. A missing or wrong secret returns `401 { "message": "Unauthorized" }`.
+
 ### `GET /api/work`
 Returns all work projects from MongoDB (sorted by `sortOrder`).
 
 ### `GET /api/work/[id]`
-Returns a single work project by `_id`.
+Returns a single work project by its string `_id`. `404` if not found.
 
-### `POST /api/work/add-one`
-Adds a single project. Automatically assigns the next `sortOrder` value.
+### `DELETE /api/work/[id]` — (admin)
+Deletes a single project by its string `_id`. Returns `200` on success, `404 { "message": "No document found with the given ID" }` if nothing matched.
 
-### `POST /api/work/bulk-add`
-Bulk-inserts an array of project documents, assigning `sortOrder` by array index.
+### `POST /api/work/add-one` — (admin)
+Adds a single project and assigns it the next `sortOrder`. Body is the document itself. The `_id` is resolved as follows:
 
-### `DELETE /api/work/delete-one/[id]`
-Deletes a project by its MongoDB `ObjectId`.
+- if the body has a string `_id`, it is used as-is (`409` if it already exists);
+- otherwise an `_id` is derived by slugifying `company` (`"Publicis Sapient"` → `"publicis-sapient"`), with a numeric suffix (`-2`, `-3`, …) added until it is unique;
+- `400` if there is neither an `_id` nor a `company` to derive one from.
 
-### `DELETE /api/work/delete-all`
-Wipes the `companiesAndProjects` collection.
+Responds `201 { "_id": "<id>", "sortOrder": <n> }`.
+
+### `POST /api/work/bulk-add` — (admin)
+Upserts an array of project documents. Every element **must** have a string `_id` (`400` otherwise). Each doc is written with `replaceOne … { upsert: true }` keyed on `_id`, and `sortOrder` is (re)assigned from the array index — so the payload is the single source of truth for order.
+
+Because it upserts, it is **idempotent**: re-running it against an already-seeded collection updates the existing rows instead of erroring on duplicate keys, and you do **not** need to `delete-all` first. Responds `200 { "message": "Documents upserted", "upsertedCount": <n>, "modifiedCount": <n> }`.
+
+### `DELETE /api/work/delete-all` — (admin)
+Wipes the `companiesAndProjects` collection. Responds `200 { "message": "All documents deleted", "deletedCount": <n> }`.
 
 ### `GET /api/projects`, `GET /api/projects/[id]`
-Returns project data from a hard-coded in-memory list in `src/app/api/projects/projects.ts`. Currently used by the `/experiments` page; flagged in the code as a TODO to migrate to MongoDB.
+Returns project data from the list in `src/app/api/projects/projects.ts` — this is also the canonical seed data for the `work` collection. Currently consumed by the `/experiments` page.
+
+## Managing work data
+
+The `work` collection is seeded and maintained through the `/api/work` admin endpoints. Locally (dev server on port 8080, guard bypassed):
+
+```bash
+# Seed / re-seed the whole collection from the canonical dataset.
+# projects.ts is a TS module, so convert it to JSON first, e.g. with a throwaway script,
+# or maintain a projects.json alongside it. Then:
+curl -X POST http://localhost:8080/api/work/bulk-add \
+  -H 'Content-Type: application/json' \
+  --data @projects.json
+# first run:  { "message": "Documents upserted", "upsertedCount": 19, "modifiedCount": 0 }
+# re-run:     { "message": "Documents upserted", "upsertedCount": 0,  "modifiedCount": 19 }
+
+# Add one record (auto-slug id from "company")
+curl -X POST http://localhost:8080/api/work/add-one \
+  -H 'Content-Type: application/json' \
+  -d '{ "company": "New Client", "role": "Front-end Lead", "description": "<p>…</p>" }'
+# -> { "_id": "new-client", "sortOrder": 19 }
+
+# Delete one record by its string _id
+curl -X DELETE http://localhost:8080/api/work/new-client
+# -> { "message": "Document deleted successfully" }
+
+# Wipe everything
+curl -X DELETE http://localhost:8080/api/work/delete-all
+```
+
+Against a deployed environment, add the admin secret to every write/delete call:
+
+```bash
+curl -X DELETE https://<your-domain>/api/work/6796a5e1a2a569c729ee2e22 \
+  -H "x-admin-secret: $ADMIN_API_SECRET"
+```
+
+In Postman, add a header `x-admin-secret` with your `ADMIN_API_SECRET` value to the request (or leave it off entirely when hitting `localhost` in dev).
 
 ## Testing
 
@@ -186,6 +242,7 @@ The project is a standard Next.js 14 application and deploys to any Node-compati
 - `MONGODB_URI` is used instead of `MONGODB_URI_LOCAL`.
 - The `/work` listing revalidates every hour (ISR).
 - `/work/[id]` pages are statically generated at build time from the current MongoDB contents via `generateStaticParams`.
+- `ADMIN_API_SECRET` **must** be set, otherwise the `add-one`, `bulk-add`, `delete-all`, and `DELETE /api/work/[id]` routes reject every request with `401`. Send it as the `x-admin-secret` header when calling them.
 
 Make sure all environment variables listed above are configured in your hosting provider.
 

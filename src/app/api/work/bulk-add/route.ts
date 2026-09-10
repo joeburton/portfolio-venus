@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
+import { assertAdmin } from "@/lib/adminGuard";
+import type { WorkDoc } from "@/lib/work";
 
 /*
-
-Insert docs
-fetch("http://localhost:8080/api/work", {
+Seed / re-seed docs
+fetch("http://localhost:8080/api/work/bulk-add", {
   method: "POST",
   headers: {
     "Content-Type": "application/json"
@@ -12,11 +13,14 @@ fetch("http://localhost:8080/api/work", {
   body: JSON.stringify(projects)
 })
   .then(response => response.json())
-  .then(data => console.log("Projects inserted:", data))
+  .then(data => console.log("Projects upserted:", data))
   .catch(error => console.error("Error:", error));
 */
 
 export async function POST(request: Request) {
+  const denied = assertAdmin(request);
+  if (denied) return denied;
+
   try {
     const client = await clientPromise;
     const db = client.db("work");
@@ -31,20 +35,33 @@ export async function POST(request: Request) {
       );
     }
 
-    // Insert the array of documents into the "companiesAndProjects" collection
-    const dataWithOrder = data.map((doc: object, index: number) => ({
-      ...doc,
-      sortOrder: index,
-    }));
+    if (data.some((doc) => !doc?._id || typeof doc._id !== "string")) {
+      return NextResponse.json(
+        { message: "Every document must have a string _id" },
+        { status: 400 },
+      );
+    }
 
-    const result = await db
-      .collection("companiesAndProjects")
-      .insertMany(dataWithOrder);
+    // Idempotent upsert keyed on _id: re-seeding does not require wiping the
+    // collection first, and duplicate keys no longer throw. sortOrder is
+    // derived from array position so the seed file is the source of truth.
+    const result = await db.collection<WorkDoc>("companiesAndProjects").bulkWrite(
+      (data as WorkDoc[]).map(({ _id, ...rest }, index) => ({
+        replaceOne: {
+          filter: { _id },
+          replacement: { ...rest, sortOrder: index },
+          upsert: true,
+        },
+      })),
+    );
 
-    // MongoDB will automatically assign a unique _id to each document
     return NextResponse.json(
-      { message: "Documents inserted", insertedIds: result.insertedIds },
-      { status: 201 },
+      {
+        message: "Documents upserted",
+        upsertedCount: result.upsertedCount,
+        modifiedCount: result.modifiedCount,
+      },
+      { status: 200 },
     );
   } catch (error) {
     console.error("Error inserting documents:", error);
