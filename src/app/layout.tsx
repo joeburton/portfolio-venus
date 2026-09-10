@@ -4,7 +4,9 @@ import { Providers } from "@/components/ChakraProvider";
 
 import type { Metadata } from "next";
 
+// @ts-ignore
 import "../css/main.css";
+// @ts-ignore
 import "../css/reset.css";
 
 export const metadata: Metadata = {
@@ -22,17 +24,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <body>
-        <div className='container'>
-          <div className='main'>
-            <Navigation />
-            <Providers>{children}</Providers>
+        <Providers>
+          <div className="container">
+            <div className="main">
+              <Navigation />
+              {children}
+            </div>
+            <div className="footer">
+              <Footer />
+            </div>
           </div>
-          <div className='footer'>
-            <Footer />
-          </div>
-        </div>
+        </Providers>
       </body>
     </html>
   );

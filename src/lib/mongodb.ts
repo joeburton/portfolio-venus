@@ -13,6 +13,8 @@ if (!uri) {
   throw new Error("Please add your MongoDB URI to .env.local");
 }
 
+console.log(`MongoDB URI: ${uri}`);
+
 // Define a module-level variable for the MongoDB client promise
 let clientPromise: Promise<MongoClient>;
 

@@ -12,7 +12,7 @@ export const RememberingToCode = () => {
 
   return (
     <>
-      <h1>Remembering ToCode Component</h1>
+      <h1>Remembering To Code Component</h1>
       <ul>
         {family.map((member) => (
           <li key={member} onClick={displayDetails}>

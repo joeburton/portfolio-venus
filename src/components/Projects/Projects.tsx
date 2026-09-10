@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { generateUniqueId } from '@/utils';
-import { useBreakpointValue } from '@chakra-ui/react';
-import { breakpoints } from '@/theme';
+import { generateUniqueId } from "@/utils";
+import { useBreakpointValue } from "@chakra-ui/react";
+import { breakpoints } from "@/theme";
 import {
   DisplayItem,
   DisplayItemInterface,
   LogoSize,
-} from '@/components/DisplayItem';
+} from "@/components/DisplayItem";
 
 export const Projects: React.FC<{ projects: DisplayItemInterface[] }> = ({
   projects,
@@ -27,7 +27,7 @@ export const Projects: React.FC<{ projects: DisplayItemInterface[] }> = ({
     if (!project.skills) return;
     return (
       <DisplayItem
-        breakpointWidths={{ base: '100%', lg: '50%', xl: '33.3%' }}
+        breakpointWidths={{ base: "100%", lg: "50%", xl: "33.3%" }}
         logo={project.logo}
         logoSize={project.logoSize as LogoSize}
         role={project.role}

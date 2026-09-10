@@ -18,6 +18,7 @@ import { Related } from "@/components/Related";
 import { FilterProjects } from "@/components/FilterProjects";
 import { DisplayItemInterface } from "@/components/DisplayItem";
 import { RememberingToCode } from "@/components/RememberingToCode";
+import { ProjectsModal } from "@/components/ProjectsModal";
 
 import styles from "./experiments.module.css";
 
@@ -41,6 +42,8 @@ async function getData() {
 
 export default async function Experiments() {
   const projects: DisplayItemInterface[] = await getData();
+
+  console.log("Projects data:", projects);
 
   return (
     <>
@@ -143,6 +146,13 @@ export default async function Experiments() {
           <Card variant="elevated">
             <CardBody>
               <RememberingToCode />
+            </CardBody>
+          </Card>
+        </Box>
+        <Box maxWidth={"900px"} m="10px auto">
+          <Card variant="elevated">
+            <CardBody>
+              <ProjectsModal />
             </CardBody>
           </Card>
         </Box>
