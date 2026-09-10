@@ -1,0 +1,184 @@
+{
+  "info": {
+    "name": "Portfolio Venus API",
+    "description": "All API operations for the portfolio-venus Next.js app.\n\n**Setup**\n- `baseUrl` defaults to `http://localhost:8080` (the `next dev -p 8080` port). Point it at your deployed URL as needed.\n- Admin/destructive routes (`add-one`, `bulk-add`, `delete-all`, delete work by id) are open when `NODE_ENV=development`. In production they require the header `x-admin-secret` to match `ADMIN_API_SECRET` — set the `adminSecret` collection variable.\n- `workId` targets a MongoDB `companiesAndProjects` doc (string `_id`, e.g. `publicis-sapient`).\n- `projectId` targets a static seed project (`_id` from `src/app/api/projects/projects.ts`).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080", "type": "string" },
+    { "key": "adminSecret", "value": "", "type": "string" },
+    { "key": "workId", "value": "publicis-sapient", "type": "string" },
+    { "key": "projectId", "value": "6796a5e1a2a569c729ee2e22", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Work (MongoDB)",
+      "item": [
+        {
+          "name": "List work",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/work",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "work"]
+            },
+            "description": "All `companiesAndProjects` docs, sorted by `sortOrder` ascending."
+          }
+        },
+        {
+          "name": "Get work by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/work/{{workId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "work", "{{workId}}"]
+            },
+            "description": "Single doc by string `_id`. 404 if not found."
+          }
+        },
+        {
+          "name": "Add one work",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-admin-secret", "value": "{{adminSecret}}", "description": "Required in production only." }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"company\": \"Example Co\",\n  \"role\": \"Front-end Lead\",\n  \"logo\": \"example.png\",\n  \"logoSize\": \"small\",\n  \"description\": \"<p>What I did here.</p>\",\n  \"skills\": \"React, TypeScript, Node.js\",\n  \"className\": \"example-co\",\n  \"links\": [\n    { \"visual\": \"example.com\", \"url\": \"https://example.com\" }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/work/add-one",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "work", "add-one"]
+            },
+            "description": "Insert one doc. Send an optional string `_id`; otherwise it is slugified from `company` (with a numeric suffix if that slug is taken). `sortOrder` is assigned as max+1. Returns 201 `{ _id, sortOrder }`. 409 if a supplied `_id` already exists."
+          }
+        },
+        {
+          "name": "Bulk add / seed work",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-admin-secret", "value": "{{adminSecret}}", "description": "Required in production only." }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"_id\": \"example-co\",\n    \"company\": \"Example Co\",\n    \"role\": \"Front-end Lead\",\n    \"logo\": \"example.png\",\n    \"logoSize\": \"small\",\n    \"description\": \"<p>What I did here.</p>\",\n    \"skills\": \"React, TypeScript\",\n    \"className\": \"example-co\",\n    \"links\": []\n  },\n  {\n    \"_id\": \"another-co\",\n    \"company\": \"Another Co\",\n    \"role\": \"Senior Engineer\",\n    \"logo\": \"another.png\",\n    \"logoSize\": \"small\",\n    \"description\": \"<p>More work.</p>\",\n    \"skills\": \"React, Node.js\",\n    \"className\": \"another-co\",\n    \"links\": []\n  }\n]"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/work/bulk-add",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "work", "bulk-add"]
+            },
+            "description": "Idempotent upsert of an array of docs keyed on `_id`. `sortOrder` is derived from array position, so the payload is the source of truth. Every item must have a string `_id`. Returns `{ upsertedCount, modifiedCount }`."
+          }
+        },
+        {
+          "name": "Delete work by id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "x-admin-secret", "value": "{{adminSecret}}", "description": "Required in production only." }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/work/{{workId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "work", "{{workId}}"]
+            },
+            "description": "Delete a single doc by string `_id`. 404 if no match."
+          }
+        },
+        {
+          "name": "Delete all work",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "x-admin-secret", "value": "{{adminSecret}}", "description": "Required in production only." }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/work/delete-all",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "work", "delete-all"]
+            },
+            "description": "Wipe the `companiesAndProjects` collection. Returns `{ deletedCount }`."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Projects (static seed)",
+      "item": [
+        {
+          "name": "List projects",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/projects",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects"]
+            },
+            "description": "Static array from `src/app/api/projects/projects.ts`."
+          }
+        },
+        {
+          "name": "Get project by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/projects/{{projectId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects", "{{projectId}}"]
+            },
+            "description": "Single static project by `_id`. 404 if not found."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Mail",
+      "item": [
+        {
+          "name": "Send enquiry email",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane@example.com\",\n  \"phoneNumber\": \"+44 7000 000000\",\n  \"message\": \"I'd like to discuss a project.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/mailsender",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "mailsender"]
+            },
+            "description": "Sends the contact-form enquiry via nodemailer/Gmail. Requires `GMAIL_USER` and `GMAIL_APP_PASSWORD` env vars. Returns `{ success: true }`."
+          }
+        },
+        {
+          "name": "Mailsender preflight (OPTIONS)",
+          "request": {
+            "method": "OPTIONS",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/mailsender",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "mailsender"]
+            },
+            "description": "CORS preflight handler. Returns 204."
+          }
+        }
+      ]
+    }
+  ]
+}
