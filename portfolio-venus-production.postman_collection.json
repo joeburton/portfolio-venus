@@ -1,0 +1,187 @@
+{
+  "info": {
+    "name": "Portfolio Venus API (Production)",
+    "description": "API operations for the live site at https://joe-burton.com.\n\n**Setup**\n- `baseUrl` is `https://joe-burton.com` (no trailing slash).\n- Admin/destructive routes (`add-one`, `bulk-add`, `delete-all`, delete work by id) require the header `x-admin-secret` to equal the server's `ADMIN_API_SECRET`. Set the `adminSecret` collection variable (store it as a Postman *secret* variable, not in version control). Without it these return 401.\n- `workId` targets a MongoDB `companiesAndProjects` doc by string `_id` (e.g. `publicis-sapient`).\n- `projectId` targets a static seed project `_id`.\n\n**⚠️ This hits real data.** `Delete all work`, `Bulk add / seed work` (replaces matching docs) and `Delete work by id` are destructive against the production database. The requests marked destructive are disabled by default — enable them deliberately.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://joe-burton.com", "type": "string" },
+    { "key": "adminSecret", "value": "", "type": "string" },
+    { "key": "workId", "value": "publicis-sapient", "type": "string" },
+    { "key": "projectId", "value": "6796a5e1a2a569c729ee2e22", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Work (MongoDB)",
+      "item": [
+        {
+          "name": "List work",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/work",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "work"]
+            },
+            "description": "All `companiesAndProjects` docs, sorted by `sortOrder` ascending. Read-only."
+          }
+        },
+        {
+          "name": "Get work by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/work/{{workId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "work", "{{workId}}"]
+            },
+            "description": "Single doc by string `_id`. 404 if not found. Read-only."
+          }
+        },
+        {
+          "name": "Add one work",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-admin-secret", "value": "{{adminSecret}}", "description": "Required. 401 without it." }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"company\": \"Example Co\",\n  \"role\": \"Front-end Lead\",\n  \"logo\": \"example.png\",\n  \"logoSize\": \"small\",\n  \"description\": \"<p>What I did here.</p>\",\n  \"skills\": \"React, TypeScript, Node.js\",\n  \"className\": \"example-co\",\n  \"links\": [\n    { \"visual\": \"example.com\", \"url\": \"https://example.com\" }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/work/add-one",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "work", "add-one"]
+            },
+            "description": "Insert one doc into production. Send an optional string `_id`; otherwise it is slugified from `company` (numeric suffix if the slug is taken). `sortOrder` is assigned as max+1. Returns 201 `{ _id, sortOrder }`. 409 if a supplied `_id` already exists."
+          }
+        },
+        {
+          "name": "Bulk add / seed work  ⚠️ DESTRUCTIVE",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-admin-secret", "value": "{{adminSecret}}", "description": "Required. 401 without it." }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"_id\": \"example-co\",\n    \"company\": \"Example Co\",\n    \"role\": \"Front-end Lead\",\n    \"logo\": \"example.png\",\n    \"logoSize\": \"small\",\n    \"description\": \"<p>What I did here.</p>\",\n    \"skills\": \"React, TypeScript\",\n    \"className\": \"example-co\",\n    \"links\": []\n  }\n]"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/work/bulk-add",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "work", "bulk-add"]
+            },
+            "description": "⚠️ Idempotent upsert keyed on `_id` — each matching production doc is REPLACED wholesale, and `sortOrder` for every item in the payload is rewritten from array position. Docs not in the payload are left untouched (this does not wipe the collection). Every item must have a string `_id`. Returns `{ upsertedCount, modifiedCount }`."
+          },
+          "disabled": true
+        },
+        {
+          "name": "Delete work by id  ⚠️ DESTRUCTIVE",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "x-admin-secret", "value": "{{adminSecret}}", "description": "Required. 401 without it." }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/work/{{workId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "work", "{{workId}}"]
+            },
+            "description": "⚠️ Permanently deletes one production doc by string `_id`. 404 if no match."
+          },
+          "disabled": true
+        },
+        {
+          "name": "Delete all work  ⚠️ DESTRUCTIVE",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "x-admin-secret", "value": "{{adminSecret}}", "description": "Required. 401 without it." }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/work/delete-all",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "work", "delete-all"]
+            },
+            "description": "⚠️ Wipes the entire production `companiesAndProjects` collection. Returns `{ deletedCount }`. There is no undo."
+          },
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "name": "Projects (static seed)",
+      "item": [
+        {
+          "name": "List projects",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/projects",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects"]
+            },
+            "description": "Static array baked into the build. Read-only."
+          }
+        },
+        {
+          "name": "Get project by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/projects/{{projectId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "projects", "{{projectId}}"]
+            },
+            "description": "Single static project by `_id`. 404 if not found. Read-only."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Mail",
+      "item": [
+        {
+          "name": "Send enquiry email",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane@example.com\",\n  \"phoneNumber\": \"+44 7000 000000\",\n  \"message\": \"Postman production smoke test.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/mailsender",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "mailsender"]
+            },
+            "description": "Sends a real email to the site owner's inbox via nodemailer/Gmail. Returns `{ success: true }`. Use sparingly on production."
+          }
+        },
+        {
+          "name": "Mailsender preflight (OPTIONS)",
+          "request": {
+            "method": "OPTIONS",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/mailsender",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "mailsender"]
+            },
+            "description": "CORS preflight handler. Returns 204. Harmless."
+          }
+        }
+      ]
+    }
+  ]
+}

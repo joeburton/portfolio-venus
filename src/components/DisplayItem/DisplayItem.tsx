@@ -1,29 +1,29 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import parse from 'html-react-parser';
-import { Card, CardBody, Text, Link, Box, Tag, Image } from '@chakra-ui/react';
+import { useState } from "react";
+import parse from "html-react-parser";
+import { Card, CardBody, Text, Link, Box, Tag, Image } from "@chakra-ui/react";
 import {
   ExternalLinkIcon,
   ChevronDownIcon,
   ChevronUpIcon,
-} from '@chakra-ui/icons';
+} from "@chakra-ui/icons";
 
-import { generateUniqueId } from '../../utils';
+import { generateUniqueId } from "../../utils";
 
-import styles from './DisplayItem.module.css';
+import styles from "./DisplayItem.module.css";
 
 interface Links {
   visual: string;
   url: string;
 }
 
-export type LogoSize = 'small' | 'medium' | 'large';
+export type LogoSize = "small" | "medium" | "large";
 
 const logoPixelWidth: { [K in LogoSize]: string } = {
-  small: '80px',
-  medium: '150px',
-  large: '200px',
+  small: "80px",
+  medium: "150px",
+  large: "200px",
 };
 
 export type DisplayItemInterface = {
@@ -51,7 +51,7 @@ const Skills = ({ skills }: SkillsInterface) => (
         key={generateUniqueId()}
         role="listitem"
         colorScheme="green"
-        m={'2px 2px 2px 0'}
+        m={"2px 2px 2px 0"}
       >
         {skill}
       </Tag>
@@ -61,21 +61,21 @@ const Skills = ({ skills }: SkillsInterface) => (
 
 export const DisplayItem = ({
   rowEnd = false,
-  breakpointWidths = { base: '100%' },
+  breakpointWidths = { base: "100%" },
   logo,
   logoSize,
   role,
   company,
   description,
   skills,
-  className = '',
+  className = "",
   links = [],
 }: DisplayItemInterface) => {
   const [open, setOpen] = useState(false);
 
   const constrainContent = description?.length > 300 ? true : false;
 
-  const skillSet: string[] = skills?.split(',');
+  const skillSet: string[] = skills?.split(",");
 
   if (!skillSet?.length) {
     return (
@@ -83,7 +83,7 @@ export const DisplayItem = ({
         <Card variant="elevated" mr={[0, 0, 0, 5]} mb={5} shadow="md">
           <CardBody
             className={styles.cardBody}
-            minHeight={{ base: 'auto', lg: '520px', xl: '550px' }}
+            minHeight={{ base: "auto", lg: "520px", xl: "550px" }}
             textAlign="center"
           >
             In complete data.
@@ -104,7 +104,7 @@ export const DisplayItem = ({
       >
         <CardBody
           className={styles.cardBody}
-          minHeight={{ base: 'auto', lg: '520px', xl: '550px' }}
+          minHeight={{ base: "auto", lg: "520px", xl: "550px" }}
         >
           <Image
             src={`/assets/logos/${logo}`}
@@ -112,10 +112,10 @@ export const DisplayItem = ({
             width={150}
             height={150}
             style={{
-              marginBottom: '20px',
+              marginBottom: "20px",
               maxWidth: logoPixelWidth[logoSize],
-              width: '100%',
-              height: 'auto',
+              width: "100%",
+              height: "auto",
             }}
           />
           <Text fontSize="sm" className={styles.contentItem}>
@@ -160,18 +160,19 @@ export const DisplayItem = ({
               )}
             </Link>
           )}
-          {links?.length &&
-            links.map((link) => (
-              <Link
-                fontSize="sm"
-                href={link.url}
-                isExternal
-                key={generateUniqueId()}
-                className={styles.link}
-              >
-                {link.visual} <ExternalLinkIcon mx="6px" />
-              </Link>
-            ))}
+          {links?.length
+            ? links.map((link) => (
+                <Link
+                  fontSize="sm"
+                  href={link.url}
+                  isExternal
+                  key={generateUniqueId()}
+                  className={styles.link}
+                >
+                  {link.visual} <ExternalLinkIcon mx="6px" />
+                </Link>
+              ))
+            : ""}
         </CardBody>
       </Card>
     </Box>
