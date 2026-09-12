@@ -1,7 +1,7 @@
 {
   "info": {
     "name": "Portfolio Venus API",
-    "description": "All API operations for the portfolio-venus Next.js app.\n\n**Setup**\n- `baseUrl` defaults to `http://localhost:8080` (the `next dev -p 8080` port). Point it at your deployed URL as needed.\n- Admin/destructive routes (`add-one`, `bulk-add`, `delete-all`, delete work by id) are open when `NODE_ENV=development`. In production they require the header `x-admin-secret` to match `ADMIN_API_SECRET` — set the `adminSecret` collection variable.\n- `workId` targets a MongoDB `companiesAndProjects` doc (string `_id`, e.g. `publicis-sapient`).\n- `projectId` targets a static seed project (`_id` from `src/app/api/projects/projects.ts`).",
+    "description": "All API operations for the portfolio-venus Next.js app.\n\n**Setup**\n- `baseUrl` defaults to `http://localhost:8080` (the `next dev -p 8080` port). Point it at your deployed URL as needed.\n- Admin/destructive routes (`add-one`, `bulk-add`, `delete-all`, update work by id, delete work by id) are open when `NODE_ENV=development`. In production they require the header `x-admin-secret` to match `ADMIN_API_SECRET` — set the `adminSecret` collection variable.\n- `workId` targets a MongoDB `companiesAndProjects` doc (string `_id`, e.g. `publicis-sapient`).\n- `projectId` targets a static seed project (`_id` from `src/app/api/projects/projects.ts`).",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -38,6 +38,26 @@
               "path": ["api", "work", "{{workId}}"]
             },
             "description": "Single doc by string `_id`. 404 if not found."
+          }
+        },
+        {
+          "name": "Update work by id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-admin-secret", "value": "{{adminSecret}}", "description": "Required in production only." }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role\": \"Updated Role Title\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/work/{{workId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "work", "{{workId}}"]
+            },
+            "description": "Partially update a single doc by string `_id`. Only the fields present in the body are changed (`$set`); any `_id` in the body is ignored — the URL param is authoritative. Returns the updated document. 400 if the body has no fields to update, 404 if no match."
           }
         },
         {
