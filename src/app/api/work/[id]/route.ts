@@ -29,6 +29,56 @@ export async function GET(
   }
 }
 
+export async function PATCH(
+  request: Request,
+  { params }: { params: { id: string } },
+) {
+  const denied = assertAdmin(request);
+  if (denied) return denied;
+
+  const { id } = params;
+
+  if (!id) {
+    return NextResponse.json({ message: "Missing ID" }, { status: 400 });
+  }
+
+  try {
+    const { _id: _ignored, sortOrder, ...data } = await request.json();
+
+    if (Object.keys(data).length === 0 && sortOrder === undefined) {
+      return NextResponse.json(
+        { message: "No fields provided to update" },
+        { status: 400 },
+      );
+    }
+
+    const client = await clientPromise;
+    const db = client.db("work");
+
+    const update: Partial<WorkDoc> = { ...data };
+    if (sortOrder !== undefined) update.sortOrder = sortOrder;
+
+    const result = await db
+      .collection<WorkDoc>("companiesAndProjects")
+      .findOneAndUpdate({ _id: id }, { $set: update }, { returnDocument: "after" });
+
+    if (!result) {
+      return NextResponse.json(
+        { message: "No document found with the given ID" },
+        { status: 404 },
+      );
+    }
+
+    return NextResponse.json(result);
+  } catch (error) {
+    console.error("Error updating document:", error);
+    return NextResponse.json(
+      { message: "Error updating document" },
+      { status: 500 },
+    );
+  }
+}
+
 export async function DELETE(
   request: Request,
   { params }: { params: { id: string } },

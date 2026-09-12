@@ -1,7 +1,7 @@
 {
   "info": {
     "name": "Portfolio Venus API (Production)",
-    "description": "API operations for the live site at https://joe-burton.com.\n\n**Setup**\n- `baseUrl` is `https://joe-burton.com` (no trailing slash).\n- Admin/destructive routes (`add-one`, `bulk-add`, `delete-all`, delete work by id) require the header `x-admin-secret` to equal the server's `ADMIN_API_SECRET`. Set the `adminSecret` collection variable (store it as a Postman *secret* variable, not in version control). Without it these return 401.\n- `workId` targets a MongoDB `companiesAndProjects` doc by string `_id` (e.g. `publicis-sapient`).\n- `projectId` targets a static seed project `_id`.\n\n**⚠️ This hits real data.** `Delete all work`, `Bulk add / seed work` (replaces matching docs) and `Delete work by id` are destructive against the production database. The requests marked destructive are disabled by default — enable them deliberately.",
+    "description": "API operations for the live site at https://joe-burton.com.\n\n**Setup**\n- `baseUrl` is `https://joe-burton.com` (no trailing slash).\n- Admin/destructive routes (`add-one`, `bulk-add`, `delete-all`, update work by id, delete work by id) require the header `x-admin-secret` to equal the server's `ADMIN_API_SECRET`. Set the `adminSecret` collection variable (store it as a Postman *secret* variable, not in version control). Without it these return 401.\n- `workId` targets a MongoDB `companiesAndProjects` doc by string `_id` (e.g. `publicis-sapient`).\n- `projectId` targets a static seed project `_id`.\n\n**⚠️ This hits real data.** `Delete all work`, `Bulk add / seed work` (replaces matching docs), `Update work by id` and `Delete work by id` are destructive against the production database. The requests marked destructive are disabled by default — enable them deliberately.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -39,6 +39,27 @@
             },
             "description": "Single doc by string `_id`. 404 if not found. Read-only."
           }
+        },
+        {
+          "name": "Update work by id  ⚠️ DESTRUCTIVE",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "x-admin-secret", "value": "{{adminSecret}}", "description": "Required. 401 without it." }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role\": \"Updated Role Title\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/work/{{workId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "work", "{{workId}}"]
+            },
+            "description": "⚠️ Partially updates one production doc by string `_id`. Only the fields present in the body are changed (`$set`); any `_id` in the body is ignored — the URL param is authoritative. Returns the updated document. 400 if the body has no fields to update, 404 if no match."
+          },
+          "disabled": true
         },
         {
           "name": "Add one work",

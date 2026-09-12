@@ -38,7 +38,7 @@ src/
 │       ├── mailsender/          # POST: sends contact-form email via Nodemailer/Gmail
 │       ├── work/                # CRUD endpoints backed by MongoDB
 │       │   ├── route.ts                 # GET all work projects
-│       │   ├── [id]/route.ts            # GET + DELETE a single project by _id
+│       │   ├── [id]/route.ts            # GET + PATCH + DELETE a single project by _id
 │       │   ├── add-one/route.ts         # POST a single project (admin)
 │       │   ├── bulk-add/route.ts        # POST many projects — idempotent upsert (admin)
 │       │   └── delete-all/route.ts      # DELETE every project (admin)
@@ -123,7 +123,7 @@ NEXT_PUBLIC_BASE_URL=http://localhost:8080
 BASE_URL=http://localhost:8080
 
 # Shared secret guarding the destructive /api/work admin routes
-# (add-one, bulk-add, delete-all, DELETE /api/work/[id]).
+# (add-one, bulk-add, delete-all, PATCH/DELETE /api/work/[id]).
 # Not needed locally — NODE_ENV=development bypasses the guard.
 # In production, set this and send it as the `x-admin-secret` header.
 # Generate one with: openssl rand -hex 32
@@ -160,6 +160,9 @@ Returns all work projects from MongoDB (sorted by `sortOrder`).
 
 ### `GET /api/work/[id]`
 Returns a single work project by its string `_id`. `404` if not found.
+
+### `PATCH /api/work/[id]` — (admin)
+Partially updates a single project by its string `_id`. Body is a partial document — only the fields present are changed (via `$set`); `_id` in the body is ignored (the URL param is authoritative). Returns the updated document on success, `400` if the body has no fields to update, `404 { "message": "No document found with the given ID" }` if nothing matched.
 
 ### `DELETE /api/work/[id]` — (admin)
 Deletes a single project by its string `_id`. Returns `200` on success, `404 { "message": "No document found with the given ID" }` if nothing matched.
