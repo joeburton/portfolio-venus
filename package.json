@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watch --verbose"
+    "test": "jest --watch --verbose",
+    "seed:body": "node --experimental-strip-types --no-warnings scripts/generate-seed-body.mjs"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",

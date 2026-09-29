@@ -1,12 +1,12 @@
 export const projects = [
   {
-    _id: "6796a5e1a2a569c729ee2e22",
+    _id: "publicis-sapient",
     logo: "publicissapient.png",
     logoSize: "small",
-    role: "Front-end Lead/ Manager",
+    role: "Senior Software Engineer/ Manager",
     company: "Publicis Sapient",
     description:
-      "<p>Working as a consultant delivering a variety of front-end focused projects for different clients such as Lloyds, HSBC & Schneider Electric. Operating as a Front-end Team Lead or Senior Engineer.</p><p>Schneider Electric / Energy Sage<br />I worked as a Full-stack Engineer on this project, building custom React components and Node.js back-end logic for the full-stack Remix application. My main focus was building a complex multi-step form for users to retrieve the French equivalent of an EPC certificate. I was also involved in configuring the CMS, Builder.io, along with day-to-day tasks such as fixing bugs, optimising SEO, increasing test coverage, and improving page speed, accessibility, and usability. <br />Skills: Remix, React, TypeScript, Node.js, Builder.io, CSS, and HTML.</p><p>Lloyds / Save & Invest<br />Managed a small team of Front-end Engineers that successfully delivered an online saving and investment calculator wrapped in the Lloyds & Halifax banking iOS app. We used React & TypeScript in conjunction with Lloyds’ own React framework, Interstellar and their UI library, Constellation. We worked closely with both these internal teams, helping to fix bugs and add new and improved features.<br />Skills: React & TypeScript, Jest & React Testing Library, Dynatrace, Google Lighthouse.</p><p>HSBC / API Estate Insights Tool<br /> Team Lead and Front-end Architect. Successfully delivered a fully responsive SPA for HSBC staff to gain insights into their API estate. We also developed a custom react component library extending Recharts. <br />Skills: React & TypeScript, Apollo Client, GraphQL, Node.js & Express. ",
+      "<p>Working as a consultant delivering a variety of front-end focused projects for different clients such as Lloyds, HSBC & Schneider Electric. Operating as a Front-end Team Lead or Senior Engineer.</p><p>Schneider Electric / Energy Sage<br />I worked as a Full-stack Engineer on this project, building custom React components and Node.js back-end logic for the full-stack Remix application. My main focus was building a complex multi-step form for users to retrieve the French equivalent of an EPC certificate. I was also involved in configuring the CMS, Builder.io, along with day-to-day tasks such as fixing bugs, optimising SEO, increasing test coverage, and improving page speed, accessibility, and usability. <br />Skills: Remix, React, TypeScript, Node.js, Builder.io, CSS, and HTML.</p><p>Lloyds / Save & Invest<br />Managed a small team of Front-end Engineers that successfully delivered an online saving and investment calculator wrapped in the Lloyds & Halifax banking iOS app. We used React & TypeScript in conjunction with Lloyds' own React framework, Interstellar and their UI library, Constellation. We worked closely with both these internal teams, helping to fix bugs and add new and improved features.<br />Skills: React & TypeScript, Jest & React Testing Library, Dynatrace, Google Lighthouse.</p><p>HSBC / API Estate Insights Tool<br /> Team Lead and Front-end Architect. Successfully delivered a fully responsive SPA for HSBC staff to gain insights into their API estate. We also developed a custom react component library extending Recharts. <br />Skills: React & TypeScript, Apollo Client, GraphQL, Node.js & Express. ",
     skills:
       "React, TypeScript, JavaScript, Remix, Vite, Redux, Zustand, Jest, RTL, node/msw, GraphQL, Apollo Client, Next.js, Node.js, Express, Storybook, styled-components, HTML, CSS, SASS, Builder.io, Dynatrace, Google Lighthouse",
     className: "publicis-sapient",
@@ -22,7 +22,7 @@ export const projects = [
     ],
   },
   {
-    _id: "6796a5e1a2a569c729ee2e23",
+    _id: "worldfirst",
     logo: "worldfirst.png",
     logoSize: "small",
     role: "Senior Software Engineer/ Team Lead",
@@ -40,7 +40,7 @@ export const projects = [
     ],
   },
   {
-    _id: "6796a5e1a2a569c729ee2e24",
+    _id: "ge-power-digital",
     logo: "ge.png",
     logoSize: "small",
     role: "Senior UI Developer",
@@ -58,7 +58,7 @@ export const projects = [
     ],
   },
   {
-    _id: "6796a5e1a2a569c729ee2e25",
+    _id: "cashflows",
     logo: "cashflows.png",
     logoSize: "small",
     role: "Lead UI Developer",
@@ -76,7 +76,7 @@ export const projects = [
     ],
   },
   {
-    _id: "6796a5e1a2a569c729ee2e26",
+    _id: "boiler-juice",
     logo: "boilerjuice.svg",
     logoSize: "large",
     role: "Lead Front-end Developer",
@@ -94,7 +94,7 @@ export const projects = [
     ],
   },
   {
-    _id: "6796a5e1a2a569c729ee2e27",
+    _id: "cambridge-assessment",
     logo: "cambridge-assessment.svg",
     logoSize: "medium",
     role: "Senior Front-end Developer",
@@ -116,7 +116,7 @@ export const projects = [
     ],
   },
   {
-    _id: "6796a5e1a2a569c729ee2e28",
+    _id: "tribal-worldwide",
     logo: "tribal-worldwide.jpeg",
     logoSize: "small",
     role: "Senior Front-end Developer",
@@ -141,7 +141,7 @@ export const projects = [
     ],
   },
   {
-    _id: "6796a5e1a2a569c729ee2e29",
+    _id: "freelance-helix",
     logo: "helix.svg",
     logoSize: "medium",
     role: "Senior Front-end Developer",
@@ -158,7 +158,7 @@ export const projects = [
     ],
   },
   {
-    _id: "6796a5e1a2a569c729ee2e2a",
+    _id: "photobox",
     logo: "photobox.png",
     logoSize: "medium",
     role: "Senior Front-end Developer",
@@ -176,7 +176,7 @@ export const projects = [
     ],
   },
   {
-    _id: "6796a5e1a2a569c729ee2e2b",
+    _id: "lastminute-com",
     logo: "lastminute.png",
     logoSize: "small",
     role: "Senior Front-end Developer",
@@ -198,7 +198,7 @@ export const projects = [
     ],
   },
   {
-    _id: "6796a5e1a2a569c729ee2e2c",
+    _id: "bauer-media",
     logo: "bauer.jpg",
     logoSize: "small",
     role: "Front-end Developer",
@@ -220,7 +220,7 @@ export const projects = [
     ],
   },
   {
-    _id: "6796a5e1a2a569c729ee2e2e",
+    _id: "rank-interactive",
     logo: "rank-interactive.jpeg",
     logoSize: "small",
     role: "Lead Front-end Developer",
@@ -238,7 +238,7 @@ export const projects = [
     ],
   },
   {
-    _id: "6796a5e1a2a569c729ee2e2d",
+    _id: "jam-the-engine-group",
     logo: "jam-engine-group.png",
     logoSize: "small",
     role: "Senior UI Developer",
@@ -259,7 +259,7 @@ export const projects = [
     ],
   },
   {
-    _id: "6796a5e1a2a569c729ee2e2f",
+    _id: "sapient-nitro",
     logo: "sapient.png",
     logoSize: "small",
     role: "Front-end Developer",
@@ -284,7 +284,7 @@ export const projects = [
     ],
   },
   {
-    _id: "6796a5e1a2a569c729ee2e30",
+    _id: "freelance-tyrrells",
     logo: "tyrrells-logo.svg",
     logoSize: "medium",
     role: "Front-end Developer",
@@ -300,7 +300,7 @@ export const projects = [
     ],
   },
   {
-    _id: "6796a5e1a2a569c729ee2e31",
+    _id: "addison",
     logo: "addison-group.jpg",
     logoSize: "small",
     role: "Front-end Developer",
@@ -325,7 +325,7 @@ export const projects = [
     ],
   },
   {
-    _id: "6796a5e1a2a569c729ee2e32",
+    _id: "guardian",
     logo: "guardian.png",
     logoSize: "small",
     className: "guardian-logo",
@@ -346,12 +346,12 @@ export const projects = [
     ],
   },
   {
-    _id: "6796a5e1a2a569c729ee2e33",
+    _id: "queensland-government",
     logo: "qld.png",
     logoSize: "small",
     className: "qld-logo",
     role: "Developer",
-    company: "Queensland Goverment",
+    company: "Queensland Government",
     description:
       "<p>DOC (Department of Communities) Queensland Government Australia. I worked for the DOC on HTML/ CSS table-less page design and development and the integration of front-end templates with their PHP based CMS.</p>",
     skills: "Flash, JavaScript, jQuery, HTML, CSS",
@@ -363,7 +363,7 @@ export const projects = [
     ],
   },
   {
-    _id: "6796a5e1a2a569c729ee2e34",
+    _id: "ogilvy",
     logo: "ogilvy.png",
     logoSize: "small",
     className: "ogilvy-logo",

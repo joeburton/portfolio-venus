@@ -1,6 +1,6 @@
 [
   {
-    "_id": "6796a5e1a2a569c729ee2e22",
+    "_id": "publicis-sapient",
     "logo": "publicissapient.png",
     "logoSize": "small",
     "role": "Senior Software Engineer/ Manager",
@@ -20,7 +20,7 @@
     ]
   },
   {
-    "_id": "6796a5e1a2a569c729ee2e23",
+    "_id": "worldfirst",
     "logo": "worldfirst.png",
     "logoSize": "small",
     "role": "Senior Software Engineer/ Team Lead",
@@ -36,7 +36,7 @@
     ]
   },
   {
-    "_id": "6796a5e1a2a569c729ee2e24",
+    "_id": "ge-power-digital",
     "logo": "ge.png",
     "logoSize": "small",
     "role": "Senior UI Developer",
@@ -52,7 +52,7 @@
     ]
   },
   {
-    "_id": "6796a5e1a2a569c729ee2e25",
+    "_id": "cashflows",
     "logo": "cashflows.png",
     "logoSize": "small",
     "role": "Lead UI Developer",
@@ -68,7 +68,7 @@
     ]
   },
   {
-    "_id": "6796a5e1a2a569c729ee2e26",
+    "_id": "boiler-juice",
     "logo": "boilerjuice.svg",
     "logoSize": "large",
     "role": "Lead Front-end Developer",
@@ -84,7 +84,7 @@
     ]
   },
   {
-    "_id": "6796a5e1a2a569c729ee2e27",
+    "_id": "cambridge-assessment",
     "logo": "cambridge-assessment.svg",
     "logoSize": "medium",
     "role": "Senior Front-end Developer",
@@ -104,7 +104,7 @@
     ]
   },
   {
-    "_id": "6796a5e1a2a569c729ee2e28",
+    "_id": "tribal-worldwide",
     "logo": "tribal-worldwide.jpeg",
     "logoSize": "small",
     "role": "Senior Front-end Developer",
@@ -128,7 +128,7 @@
     ]
   },
   {
-    "_id": "6796a5e1a2a569c729ee2e29",
+    "_id": "freelance-helix",
     "logo": "helix.svg",
     "logoSize": "medium",
     "role": "Senior Front-end Developer",
@@ -144,7 +144,7 @@
     ]
   },
   {
-    "_id": "6796a5e1a2a569c729ee2e2a",
+    "_id": "photobox",
     "logo": "photobox.png",
     "logoSize": "medium",
     "role": "Senior Front-end Developer",
@@ -160,7 +160,7 @@
     ]
   },
   {
-    "_id": "6796a5e1a2a569c729ee2e2b",
+    "_id": "lastminute-com",
     "logo": "lastminute.png",
     "logoSize": "small",
     "role": "Senior Front-end Developer",
@@ -180,7 +180,7 @@
     ]
   },
   {
-    "_id": "6796a5e1a2a569c729ee2e2c",
+    "_id": "bauer-media",
     "logo": "bauer.jpg",
     "logoSize": "small",
     "role": "Front-end Developer",
@@ -200,7 +200,7 @@
     ]
   },
   {
-    "_id": "6796a5e1a2a569c729ee2e2e",
+    "_id": "rank-interactive",
     "logo": "rank-interactive.jpeg",
     "logoSize": "small",
     "role": "Lead Front-end Developer",
@@ -216,7 +216,7 @@
     ]
   },
   {
-    "_id": "6796a5e1a2a569c729ee2e2d",
+    "_id": "jam-the-engine-group",
     "logo": "jam-engine-group.png",
     "logoSize": "small",
     "role": "Senior UI Developer",
@@ -236,7 +236,7 @@
     ]
   },
   {
-    "_id": "6796a5e1a2a569c729ee2e2f",
+    "_id": "sapient-nitro",
     "logo": "sapient.png",
     "logoSize": "small",
     "role": "Front-end Developer",
@@ -260,7 +260,7 @@
     ]
   },
   {
-    "_id": "6796a5e1a2a569c729ee2e30",
+    "_id": "freelance-tyrrells",
     "logo": "tyrrells-logo.svg",
     "logoSize": "medium",
     "role": "Front-end Developer",
@@ -276,7 +276,7 @@
     ]
   },
   {
-    "_id": "6796a5e1a2a569c729ee2e31",
+    "_id": "addison",
     "logo": "addison-group.jpg",
     "logoSize": "small",
     "role": "Front-end Developer",
@@ -300,7 +300,7 @@
     ]
   },
   {
-    "_id": "6796a5e1a2a569c729ee2e32",
+    "_id": "guardian",
     "logo": "guardian.png",
     "logoSize": "small",
     "className": "guardian-logo",
@@ -320,12 +320,12 @@
     ]
   },
   {
-    "_id": "6796a5e1a2a569c729ee2e33",
+    "_id": "queensland-government",
     "logo": "qld.png",
     "logoSize": "small",
     "className": "qld-logo",
     "role": "Developer",
-    "company": "Queensland Goverment",
+    "company": "Queensland Government",
     "description": "<p>DOC (Department of Communities) Queensland Government Australia. I worked for the DOC on HTML/ CSS table-less page design and development and the integration of front-end templates with their PHP based CMS.</p>",
     "skills": "Flash, JavaScript, jQuery, HTML, CSS",
     "links": [
@@ -336,7 +336,7 @@
     ]
   },
   {
-    "_id": "6796a5e1a2a569c729ee2e34",
+    "_id": "ogilvy",
     "logo": "ogilvy.png",
     "logoSize": "small",
     "className": "ogilvy-logo",
