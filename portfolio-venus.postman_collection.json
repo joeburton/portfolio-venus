@@ -8,7 +8,7 @@
     { "key": "baseUrl", "value": "http://localhost:8080", "type": "string" },
     { "key": "adminSecret", "value": "", "type": "string" },
     { "key": "workId", "value": "publicis-sapient", "type": "string" },
-    { "key": "projectId", "value": "6796a5e1a2a569c729ee2e22", "type": "string" }
+    { "key": "projectId", "value": "publicis-sapient", "type": "string" }
   ],
   "item": [
     {
@@ -97,7 +97,7 @@
               "host": ["{{baseUrl}}"],
               "path": ["api", "work", "bulk-add"]
             },
-            "description": "Idempotent upsert of an array of docs keyed on `_id`. `sortOrder` is derived from array position, so the payload is the source of truth. Every item must have a string `_id`. Returns `{ upsertedCount, modifiedCount }`."
+            "description": "Idempotent upsert of an array of docs keyed on `_id`. `sortOrder` is derived from array position, so the payload is the source of truth. Every item must have a string `_id`. Returns `{ upsertedCount, modifiedCount }`. To seed the real dataset, run `npm run seed:body` and paste the contents of `projects.body.json` as the body."
           }
         },
         {

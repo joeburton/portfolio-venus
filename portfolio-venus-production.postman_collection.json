@@ -8,7 +8,7 @@
     { "key": "baseUrl", "value": "https://joe-burton.com", "type": "string" },
     { "key": "adminSecret", "value": "", "type": "string" },
     { "key": "workId", "value": "publicis-sapient", "type": "string" },
-    { "key": "projectId", "value": "6796a5e1a2a569c729ee2e22", "type": "string" }
+    { "key": "projectId", "value": "publicis-sapient", "type": "string" }
   ],
   "item": [
     {
@@ -98,7 +98,7 @@
               "host": ["{{baseUrl}}"],
               "path": ["api", "work", "bulk-add"]
             },
-            "description": "⚠️ Idempotent upsert keyed on `_id` — each matching production doc is REPLACED wholesale, and `sortOrder` for every item in the payload is rewritten from array position. Docs not in the payload are left untouched (this does not wipe the collection). Every item must have a string `_id`. Returns `{ upsertedCount, modifiedCount }`."
+            "description": "⚠️ Idempotent upsert keyed on `_id` — each matching production doc is REPLACED wholesale, and `sortOrder` for every item in the payload is rewritten from array position. Docs not in the payload are left untouched (this does not wipe the collection). Every item must have a string `_id`. Returns `{ upsertedCount, modifiedCount }`. To seed the real dataset, run `npm run seed:body` and paste the contents of `projects.body.json` as the body."
           },
           "disabled": true
         },

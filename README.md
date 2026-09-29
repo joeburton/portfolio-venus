@@ -45,7 +45,7 @@ src/
 │       └── projects/            # GET endpoints backed by an in-memory dataset
 │           ├── route.ts                 # GET all projects
 │           ├── [id]/route.ts            # GET single project
-│           └── projects.ts              # Hard-coded project data
+│           └── projects.ts              # Canonical project data (also the work seed)
 ├── components/                  # Reusable UI components
 │   ├── Navigation/              # Top nav bar
 │   ├── Footer/                  # Page footer
@@ -78,6 +78,11 @@ src/
 
 public/
 └── assets/                      # Logos, profile images, project screenshots, AI-generated imagery
+
+scripts/
+└── generate-seed-body.mjs       # Builds projects.body.json from projects.ts (npm run seed:body)
+
+projects.body.json               # Generated bulk-add request body — do not edit by hand
 ```
 
 ## Pages
@@ -132,7 +137,7 @@ ADMIN_API_SECRET=change-me-to-a-long-random-string
 
 The MongoDB `work` database is expected to contain a `companiesAndProjects` collection. Documents follow the `DisplayItemInterface` shape (see `src/components/DisplayItem/DisplayItem.tsx`) with a `sortOrder` field controlling display order.
 
-**`_id` is an application-owned string, not a MongoDB `ObjectId`.** The canonical dataset lives in `src/app/api/projects/projects.ts`, where each record carries its own stable `_id` (e.g. `"6796a5e1a2a569c729ee2e22"`). Keeping ids in the source file means they survive a wipe-and-reseed, so bookmarked `/work/[id]` URLs and API calls keep working. All `/api/work` routes therefore query by string `_id` — see `WorkDoc` in `src/lib/work.ts`. Seed the collection with `POST /api/work/bulk-add` (see [Managing work data](#managing-work-data)).
+**`_id` is an application-owned string, not a MongoDB `ObjectId`.** The canonical dataset lives in `src/app/api/projects/projects.ts`, where each record carries its own stable, human-readable slug `_id` (e.g. `"publicis-sapient"`). Ids follow the same slugify rule as `add-one` (lowercased `company`, non-alphanumerics collapsed to `-`); when one company has several records, the project name is appended to keep them unique (e.g. `"freelance-helix"`, `"freelance-tyrrells"`). Keeping ids in the source file means they survive a wipe-and-reseed, so bookmarked `/work/[id]` URLs and API calls keep working. All `/api/work` routes therefore query by string `_id` — see `WorkDoc` in `src/lib/work.ts`. Seed the collection with `POST /api/work/bulk-add` (see [Managing work data](#managing-work-data)).
 
 ### Scripts
 
@@ -142,6 +147,7 @@ npm run build    # Production build
 npm run start    # Start the production server
 npm run lint     # Run ESLint (next/core-web-vitals)
 npm test         # Run Jest in watch + verbose mode
+npm run seed:body  # Regenerate projects.body.json from src/app/api/projects/projects.ts
 ```
 
 Note: the dev server is configured to run on **port 8080**, not the Next.js default of 3000.
@@ -179,7 +185,7 @@ Responds `201 { "_id": "<id>", "sortOrder": <n> }`.
 ### `POST /api/work/bulk-add` — (admin)
 Upserts an array of project documents. Every element **must** have a string `_id` (`400` otherwise). Each doc is written with `replaceOne … { upsert: true }` keyed on `_id`, and `sortOrder` is (re)assigned from the array index — so the payload is the single source of truth for order.
 
-Because it upserts, it is **idempotent**: re-running it against an already-seeded collection updates the existing rows instead of erroring on duplicate keys, and you do **not** need to `delete-all` first. Responds `200 { "message": "Documents upserted", "upsertedCount": <n>, "modifiedCount": <n> }`.
+Because it upserts, it is **idempotent**: re-running it against an already-seeded collection updates the existing rows instead of erroring on duplicate keys, and you do **not** need to `delete-all` first. The exception is **renaming an `_id`**: the upsert inserts the new id but leaves the old document in place, so run `delete-all` before re-seeding in that case. Responds `200 { "message": "Documents upserted", "upsertedCount": <n>, "modifiedCount": <n> }`.
 
 ### `DELETE /api/work/delete-all` — (admin)
 Wipes the `companiesAndProjects` collection. Responds `200 { "message": "All documents deleted", "deletedCount": <n> }`.
@@ -193,11 +199,11 @@ The `work` collection is seeded and maintained through the `/api/work` admin end
 
 ```bash
 # Seed / re-seed the whole collection from the canonical dataset.
-# projects.ts is a TS module, so convert it to JSON first, e.g. with a throwaway script,
-# or maintain a projects.json alongside it. Then:
+# Edit src/app/api/projects/projects.ts, then regenerate the JSON request body:
+npm run seed:body
 curl -X POST http://localhost:8080/api/work/bulk-add \
   -H 'Content-Type: application/json' \
-  --data @projects.json
+  --data @projects.body.json
 # first run:  { "message": "Documents upserted", "upsertedCount": 19, "modifiedCount": 0 }
 # re-run:     { "message": "Documents upserted", "upsertedCount": 0,  "modifiedCount": 19 }
 
@@ -218,7 +224,7 @@ curl -X DELETE http://localhost:8080/api/work/delete-all
 Against a deployed environment, add the admin secret to every write/delete call:
 
 ```bash
-curl -X DELETE https://<your-domain>/api/work/6796a5e1a2a569c729ee2e22 \
+curl -X DELETE https://<your-domain>/api/work/publicis-sapient \
   -H "x-admin-secret: $ADMIN_API_SECRET"
 ```
 

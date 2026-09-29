@@ -29,7 +29,7 @@ describe("DisplayItem", () => {
       </ChakraBaseProvider>
     );
 
-    expect(screen.getByText(/Front-end Lead\/ Manager/)).toBeInTheDocument();
+    expect(screen.getByText(/Senior Software Engineer\/ Manager/)).toBeInTheDocument();
   });
 
   it("should toggle/ expand the text content area when the Expand/ Collapse link is clicked ", async () => {

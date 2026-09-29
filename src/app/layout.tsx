@@ -22,14 +22,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <body>
-        <div className='container'>
-          <div className='main'>
+        <div className="container">
+          <div className="main">
             <Navigation />
             <Providers>{children}</Providers>
           </div>
-          <div className='footer'>
+          <div className="footer">
             <Footer />
           </div>
         </div>
